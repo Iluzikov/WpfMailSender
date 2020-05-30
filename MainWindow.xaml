@@ -6,7 +6,22 @@
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Закрыть" Click="MenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Помощь">
+                <MenuItem Header="О программе"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Ready!"/>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid DockPanel.Dock="Left">
+
+        </Grid>
+    </DockPanel>
 </Window>
