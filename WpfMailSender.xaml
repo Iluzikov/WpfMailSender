@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Рассыльщик писем" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -20,8 +20,50 @@
                 <TextBlock Text="Ready!"/>
             </StatusBarItem>
         </StatusBar>
-        <Grid DockPanel.Dock="Left">
+        <TabControl DockPanel.Dock="Left">
+            <TabItem Header="Отправка сообщений">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="800*"/>
+                    </Grid.ColumnDefinitions>
 
-        </Grid>
+                    <StackPanel >
+                        <TextBlock Text="Авторизация"
+                           Margin="0,15,0,5"
+                           HorizontalAlignment="Center"/>
+
+                        <ComboBox/>
+                    </StackPanel>
+
+                    <DockPanel Grid.Column="1">
+                        <Grid DockPanel.Dock="Top" Margin="5,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Кому:" />
+                            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Text="Тема:"/>
+                            <TextBox Grid.Column="1"/>
+                            <TextBox Grid.Column="1" Grid.Row="1"/>
+                        </Grid>
+
+                        <TextBlock DockPanel.Dock="Top" Margin="5,5,0,5"
+                           Text="Текст сообщения:"/>
+                        <Button DockPanel.Dock="Bottom" Content="Отправить"
+                                Width="100" HorizontalAlignment="Right" Margin="0,5,0,5"/>
+                        <TextBox DockPanel.Dock="Left"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Настройки">
+
+            </TabItem>
+        </TabControl>
+
     </DockPanel>
 </Window>
