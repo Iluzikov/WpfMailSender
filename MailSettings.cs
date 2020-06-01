@@ -5,34 +5,14 @@ namespace WpfMailSender
 {
     public class MailSettings : INotifyPropertyChanged
     {
-        private static string _smtpServer;
-        private static int _smtpServerPort;
+        
         private string _emailFrom;
         private string _password;
         private string _emailTo;
         private string _emailSubject;
         private string _emailText;
 
-        public string SmtpServer
-        {
-            get => _smtpServer;
-            set
-            {
-                if (value == _smtpServer) return;
-                _smtpServer = value;
-                OnPropertyChanged(nameof(_smtpServer));
-            }
-        }
-        public int SmtpServerPort
-        {
-            get => _smtpServerPort;
-            set
-            {
-                if (value == _smtpServerPort) return;
-                _smtpServerPort = value;
-                OnPropertyChanged(nameof(_smtpServerPort));
-            }
-        }
+       
         public string EmailFrom
         {
             get => _emailFrom;

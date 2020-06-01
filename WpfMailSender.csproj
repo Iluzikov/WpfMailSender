@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="EmailSendServiceClass.cs" />
     <Compile Include="MailSettings.cs" />
+    <Compile Include="SmtpSettings.cs" />
     <Compile Include="WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>
       <SubType>Code</SubType>
