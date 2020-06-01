@@ -28,15 +28,28 @@
                         <ColumnDefinition Width="800*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel >
-                        <TextBlock Text="Авторизация"
-                           Margin="0,15,0,5"
-                           HorizontalAlignment="Center"/>
+                    <GroupBox Header="Авторизация">
+                        <StackPanel Margin="5,0,5,0">
+                            <StackPanel Margin="0,15,0,5" >
+                                <TextBlock Text="Сервер:" />
+                                <ComboBox/>
+                            </StackPanel>
 
-                        <ComboBox/>
-                    </StackPanel>
+                            <StackPanel Margin="0,5,0,5" >
+                                <TextBlock Text="Логин:"/>
+                                <TextBox />
+                            </StackPanel>
 
-                    <DockPanel Grid.Column="1">
+
+                            <StackPanel Margin="0,5,0,5" >
+                                <TextBlock Text="Пароль:"/>
+                                <TextBox/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    
+
+                    <DockPanel Grid.Column="1" Margin="10,0,5,0">
                         <Grid DockPanel.Dock="Top" Margin="5,10,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -46,16 +59,23 @@
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Кому:" />
-                            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"  Text="Тема:"/>
+                            <TextBlock VerticalAlignment="Center" 
+                                       HorizontalAlignment="Left"
+                                       Text="Кому:" />
+                            <TextBlock Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Text="Тема:"/>
                             <TextBox Grid.Column="1"/>
                             <TextBox Grid.Column="1" Grid.Row="1"/>
                         </Grid>
 
                         <TextBlock DockPanel.Dock="Top" Margin="5,5,0,5"
                            Text="Текст сообщения:"/>
-                        <Button DockPanel.Dock="Bottom" Content="Отправить"
-                                Width="100" HorizontalAlignment="Right" Margin="0,5,0,5"/>
+                        <Button DockPanel.Dock="Bottom"
+                                Content="Отправить"
+                                Width="100" Margin="0,5,0,0"
+                                HorizontalAlignment="Right"/>
                         <TextBox DockPanel.Dock="Left"/>
                     </DockPanel>
                 </Grid>
