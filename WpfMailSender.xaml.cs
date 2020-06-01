@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace WpfMailSender
 {
@@ -7,10 +9,15 @@ namespace WpfMailSender
     /// </summary>
     public partial class MainWindow : Window
     {
+        WpfMailSenderViewModel model { get; set; } = new WpfMailSenderViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = model;
         }
+
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {

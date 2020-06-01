@@ -32,7 +32,7 @@
                         <StackPanel Margin="5,0,5,0">
                             <StackPanel Margin="0,15,0,5" >
                                 <TextBlock Text="Сервер:" />
-                                <ComboBox/>
+                                <ComboBox ItemsSource="{Binding smtpSettings}" DisplayMemberPath="Name"/>
                             </StackPanel>
 
                             <StackPanel Margin="0,5,0,5" >
