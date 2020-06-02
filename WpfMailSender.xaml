@@ -32,23 +32,25 @@
                         <StackPanel Margin="5,0,5,0">
                             <StackPanel Margin="0,15,0,5" >
                                 <TextBlock Text="Сервер:" />
-                                <ComboBox ItemsSource="{Binding smtpSettings}" DisplayMemberPath="Name"/>
+                                <ComboBox ItemsSource="{Binding smtpSettings}" SelectedValue="{Binding selectedSmtpServer}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </StackPanel>
 
-                            <StackPanel Margin="0,5,0,5" >
+                            <StackPanel Margin="0,15,0,5" >
                                 <TextBlock Text="Логин:"/>
-                                <TextBox />
+                                <TextBox Text="{Binding authSettings.EmailFrom, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Text="Пароль:" Margin="0,5,0,0"/>
+                                <TextBox Text="{Binding authSettings.Password}"/>
                             </StackPanel>
-
-
-                            <StackPanel Margin="0,5,0,5" >
-                                <TextBlock Text="Пароль:"/>
-                                <TextBox/>
-                            </StackPanel>
+                            <Button Content="OK" Margin="0,15,0,0" Click="Button_Click"/>
                         </StackPanel>
                     </GroupBox>
                     
-
                     <DockPanel Grid.Column="1" Margin="10,0,5,0">
                         <Grid DockPanel.Dock="Top" Margin="5,10,0,0">
                             <Grid.RowDefinitions>
@@ -59,6 +61,7 @@
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+                            
                             <TextBlock VerticalAlignment="Center" 
                                        HorizontalAlignment="Left"
                                        Text="Кому:" />
@@ -66,8 +69,10 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Text="Тема:"/>
-                            <TextBox Grid.Column="1"/>
-                            <TextBox Grid.Column="1" Grid.Row="1"/>
+
+                            <TextBox Grid.Column="1" Text="{Binding mailSettings.EmailTo}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding mailSettings.EmailSubject}"/>
+                            
                         </Grid>
 
                         <TextBlock DockPanel.Dock="Top" Margin="5,5,0,5"
@@ -75,8 +80,8 @@
                         <Button DockPanel.Dock="Bottom"
                                 Content="Отправить"
                                 Width="100" Margin="0,5,0,0"
-                                HorizontalAlignment="Right"/>
-                        <TextBox DockPanel.Dock="Left"/>
+                                HorizontalAlignment="Right" Click="Button_Click_1"/>
+                        <TextBox DockPanel.Dock="Left" Text="{Binding mailSettings.EmailText}"/>
                     </DockPanel>
                 </Grid>
             </TabItem>

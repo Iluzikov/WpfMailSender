@@ -5,18 +5,19 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfMailSender
 {
     public class EmailSendServiceClass
     {
         
-        public void SendMail(SmtpSettings strSmtpSettings, AuthSettings strAuthSettings, string strMailTo, string strSubject, string strBody)
+        public void SendMail(SmtpSettings strSmtpSettings, AuthSettings strAuthSettings, MailSettings strMailSettings)
         {
-            using (MailMessage mm = new MailMessage(strAuthSettings.EmailFrom, strMailTo))
+            using (MailMessage mm = new MailMessage(strAuthSettings.EmailFrom, strMailSettings.EmailTo))
             {
-                mm.Subject = strSubject;
-                mm.Body = strBody;
+                mm.Subject = strMailSettings.EmailSubject;
+                mm.Body = strMailSettings.EmailText;
                 mm.IsBodyHtml = false;
 
                 using (SmtpClient sc = new SmtpClient(strSmtpSettings.SmtpServer, strSmtpSettings.SmtpServerPort))
@@ -28,7 +29,7 @@ namespace WpfMailSender
                     try { sc.Send(mm); }
                     catch (Exception ex)
                     {
-                        //MessageBox.Show($"Возникла ошибка при отправке сообщения!\n{ex.Message}");
+                        MessageBox.Show($"Возникла ошибка при отправке сообщения!\n{ex.Message}");
                     }
                 }
             }
