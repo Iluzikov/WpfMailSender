@@ -21,35 +21,29 @@ namespace WpfMailSender
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        public IList<SmtpSettings> smtpSettings { get; set; } = new ObservableCollection<SmtpSettings>();
-        public AuthSettings authSettings { get; set; } = new AuthSettings();
-        public SmtpSettings selectedSmtpServer { get; set; }
-
+        public AuthorizationWindowViewModel model { get; set; } = new AuthorizationWindowViewModel();
+        SendEndWindow sendEndWindow;
 
         public AuthorizationWindow()
         {
             InitializeComponent();
-            smtpSettings.Add(new SmtpSettings { Name = "Mail", SmtpServer = "smtp.mail.ru", SmtpServerPort = 25 });
-            smtpSettings.Add(new SmtpSettings { Name = "Yandex", SmtpServer = "smtp.yandex.ru", SmtpServerPort = 25 });
-            smtpSettings.Add(new SmtpSettings { Name = "Google", SmtpServer = "smtp.gmail.com", SmtpServerPort = 58 });
-            DataContext = this;
+            DataContext = model;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedSmtpServer == null) return;
-            if (string.IsNullOrWhiteSpace(authSettings.EmailFrom)
-                || string.IsNullOrWhiteSpace(authSettings.Password)) return;
-            if (!EmailIsValid(authSettings.EmailFrom)) return;
-            DialogResult = true;
+            if (model.IsFillError())
+            {
+                sendEndWindow = new SendEndWindow(model.Status);
+                sendEndWindow.Owner = this;
+                sendEndWindow.ShowDialog();
+            }
+            else
+            {
+                DialogResult = true;
+            }
         }
 
-        bool EmailIsValid(string email)
-        {
-            string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
-            Match isMatch = Regex.Match(email, pattern, RegexOptions.IgnoreCase);
-            return isMatch.Success;
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {

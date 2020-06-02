@@ -25,23 +25,32 @@ namespace WpfMailSender
             Application.Current.Shutdown();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            authWindow = new AuthorizationWindow();
-            authWindow.Owner = this;
-            authWindow.ShowDialog();
-        }
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    authWindow = new AuthorizationWindow();
+        //    authWindow.Owner = this;
+        //    authWindow.ShowDialog();
+        //}
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            authWindow = new AuthorizationWindow();
-            authWindow.Owner = this;
-            if (authWindow.ShowDialog() == true)
+            if (model.IsFillError())
             {
-
-                sendEndWindow = new SendEndWindow(model.SendMessage(authWindow.selectedSmtpServer, authWindow.authSettings));
+                sendEndWindow = new SendEndWindow(model.Status);
                 sendEndWindow.Owner = this;
                 sendEndWindow.ShowDialog();
+            }
+            else
+            {
+                authWindow = new AuthorizationWindow();
+                authWindow.Owner = this;
+                if (authWindow.ShowDialog() == true)
+                {
+
+                    sendEndWindow = new SendEndWindow(model.SendMessage(authWindow.model.selectedSmtpServer, authWindow.model.authSettings));
+                    sendEndWindow.Owner = this;
+                    sendEndWindow.ShowDialog();
+                }
             }
         }
     }
