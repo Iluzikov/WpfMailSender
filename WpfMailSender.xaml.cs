@@ -10,11 +10,12 @@ namespace WpfMailSender
     public partial class MainWindow : Window
     {
         WpfMailSenderViewModel model { get; set; } = new WpfMailSenderViewModel();
+        SendEndWindow sendEndWindow;
 
         public MainWindow()
         {
             InitializeComponent();
-
+            
             DataContext = model;
         }
 
@@ -31,7 +32,9 @@ namespace WpfMailSender
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(model.SendMessage());
+            sendEndWindow = new SendEndWindow(model.SendMessage());
+            sendEndWindow.Owner = this;
+            sendEndWindow.ShowDialog();
         }
     }
 }
