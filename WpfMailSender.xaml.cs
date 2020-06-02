@@ -31,7 +31,7 @@ namespace WpfMailSender
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            model.SendMessage();
+            MessageBox.Show(model.SendMessage());
         }
     }
 }

@@ -12,7 +12,7 @@ namespace WpfMailSender
     public class EmailSendServiceClass
     {
         
-        public void SendMail(SmtpSettings strSmtpSettings, AuthSettings strAuthSettings, MailSettings strMailSettings)
+        public string SendMail(SmtpSettings strSmtpSettings, AuthSettings strAuthSettings, MailSettings strMailSettings)
         {
             using (MailMessage mm = new MailMessage(strAuthSettings.EmailFrom, strMailSettings.EmailTo))
             {
@@ -29,10 +29,11 @@ namespace WpfMailSender
                     try { sc.Send(mm); }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Возникла ошибка при отправке сообщения!\n{ex.Message}");
+                        return $"Возникла ошибка при отправке сообщения!\n{ex.Message}";
                     }
                 }
             }
+            return "Сообщение отправлено";
         }
     }
 }

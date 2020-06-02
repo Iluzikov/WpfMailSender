@@ -35,5 +35,6 @@ namespace WpfMailSender
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
     }
 }

@@ -85,7 +85,7 @@
                     </DockPanel>
                 </Grid>
             </TabItem>
-            <TabItem Header="Настройки">
+            <TabItem Header="Планировщик">
 
             </TabItem>
         </TabControl>
