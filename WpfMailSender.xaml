@@ -29,26 +29,7 @@
                     </Grid.ColumnDefinitions>
 
                     <GroupBox Header="Авторизация">
-                        <StackPanel Margin="5,0,5,0">
-                            <StackPanel Margin="0,15,0,5" >
-                                <TextBlock Text="Сервер:" />
-                                <ComboBox ItemsSource="{Binding smtpSettings}" SelectedValue="{Binding selectedSmtpServer}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Name}"/>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </StackPanel>
-
-                            <StackPanel Margin="0,15,0,5" >
-                                <TextBlock Text="Логин:"/>
-                                <TextBox Text="{Binding authSettings.EmailFrom, UpdateSourceTrigger=PropertyChanged}"/>
-                                <TextBlock Text="Пароль:" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding authSettings.Password}"/>
-                            </StackPanel>
-                            <Button Content="OK" Margin="0,15,0,0" Click="Button_Click"/>
-                        </StackPanel>
+                        
                     </GroupBox>
                     
                     <DockPanel Grid.Column="1" Margin="10,0,5,0">
