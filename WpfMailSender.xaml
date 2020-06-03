@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:WpfMailSender"
         mc:Ignorable="d"
         Title="Рассыльщик писем" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="squareBtn" TargetType="Button">
+            
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -26,7 +31,29 @@
         <TabControl DockPanel.Dock="Left">
             <TabItem Header="Формирование группы рассылки">
                 <ToolBarTray Height="65" VerticalAlignment="Top" >
-                    
+                    <ToolBar Height="30">
+                        <Label Content="Выбрать отправителя" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ComboBox Width="270" Height="25"
+                                  ToolTip="Выбрать Email отправителя" Margin="0,0,5,0">
+                        </ComboBox>
+                        <Button Height="25" Width="25"
+                                ToolTip="Добавить отправителя"
+                                Style="{StaticResource squareBtn}">
+                            <Image Source="/Resources/Img/add_icon.png" />
+                        </Button>
+                        <Button Height="25" Width="25"
+                                ToolTip="Редактировать отправителя"
+                                Style="{StaticResource squareBtn}">
+                            <Image Source="/Resources/Img/edit_icon.png" />
+                        </Button>
+                        <Button Height="25" Width="25"
+                                ToolTip="Удалить отправителя"
+                                Style="{StaticResource squareBtn}">
+                            <Image Source="/Resources/Img/delete_icon.png" />
+                        </Button>
+                    </ToolBar>
+
+
                 </ToolBarTray>
 
 
