@@ -11,29 +11,47 @@ namespace WpfMailSender
 {
     public class EmailSendServiceClass
     {
-        
-        public string SendMail(SmtpSettings strSmtpSettings, AuthSettings strAuthSettings, MailSettings strMailSettings)
+        private SmtpSettings _smtp;
+        private AuthSettings _auth;
+        private MailSettings _mail;
+
+        public EmailSendServiceClass(SmtpSettings smtp, AuthSettings auth, MailSettings mail)
         {
-            using (MailMessage mm = new MailMessage(strAuthSettings.EmailFrom, strMailSettings.EmailTo))
+            _smtp = smtp;
+            _auth = auth;
+            _mail = mail;
+        }
+
+        private void SendMail(string emailTo)
+        {
+            using (MailMessage mm = new MailMessage(_auth.EmailFrom, emailTo))
             {
-                mm.Subject = strMailSettings.EmailSubject;
-                mm.Body = strMailSettings.EmailText;
+                mm.Subject = _mail.EmailSubject;
+                mm.Body = _mail.EmailText;
                 mm.IsBodyHtml = false;
 
-                using (SmtpClient sc = new SmtpClient(strSmtpSettings.SmtpServer, strSmtpSettings.SmtpServerPort))
+                using (SmtpClient sc = new SmtpClient(_smtp.SmtpServer, _smtp.SmtpServerPort))
                 {
                     sc.EnableSsl = true;
                     sc.DeliveryMethod = SmtpDeliveryMethod.Network;
                     sc.UseDefaultCredentials = false;
-                    sc.Credentials = new NetworkCredential(strAuthSettings.EmailFrom, strAuthSettings.Password);
+                    sc.Credentials = new NetworkCredential(_auth.EmailFrom, _auth.Password);
                     try { sc.Send(mm); }
                     catch (Exception ex)
                     {
-                        return $"Возникла ошибка при отправке сообщения!\n{ex.Message}";
+                        MessageBox.Show($"Возникла ошибка при отправке сообщения!\n{ex.Message}");
                     }
                 }
             }
-            return "Сообщение отправлено";
         }
+
+        public void SendMails(IQueryable<Emails> emails)
+        {
+            foreach(Emails email in emails)
+            {
+                SendMail(email.Email);
+            }
+        }
+
     }
 }

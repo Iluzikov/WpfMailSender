@@ -59,8 +59,14 @@
                         <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
                                  Band="1" BandIndex="0">
                             <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                            <ComboBox Width="270" Height="25"
+                            <ComboBox x:Name="cbSmtp" SelectedItem="{Binding SelectedSmtp}"
+                                      Width="270" Height="25"
                                       ToolTip="Список SMTP серверов" Margin="0,0,5,0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button Height="25" Width="25"
                                     ToolTip="Добавить SMTP сервер"
@@ -110,8 +116,13 @@
                         </ToolBar>
                     </ToolBarTray>
 
-                    <DataGrid>
-                        
+                    <DataGrid x:Name="dgEmails" IsReadOnly="True" AutoGenerateColumns="False"
+                              AlternatingRowBackground="AliceBlue">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Width="10*" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Имя" Width="50*" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Email адрес" Width="100*" Binding="{Binding Email}"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                         
                 </DockPanel>
@@ -160,22 +171,27 @@
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock VerticalAlignment="Center" 
+                        
+                        <!--<TextBlock VerticalAlignment="Center" 
                                        HorizontalAlignment="Left"
-                                       Text="Кому:" />
+                                       Text="Кому:" />-->
+                        
+                        <!--<TextBox Grid.Column="1" Text="{Binding mailSettings.EmailTo}"/>-->
+                        
                         <TextBlock Grid.Row="1"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Text="Тема:"/>
-                        <TextBox Grid.Column="1" Text="{Binding mailSettings.EmailTo}"/>
+                        
+                        
                         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding mailSettings.EmailSubject}"/>
                     </Grid>
                     <TextBlock DockPanel.Dock="Top" Margin="5,5,0,5"
                            Text="Текст сообщения:"/>
-                    <Button DockPanel.Dock="Bottom"
+                    <!--<Button DockPanel.Dock="Bottom"
                                 Content="Отправить"
                                 Width="100" Margin="0,5,0,0"
-                                HorizontalAlignment="Right" Click="Button_Click_1"/>
+                                HorizontalAlignment="Right" Click="Button_Click_1"/>-->
                     <TextBox DockPanel.Dock="Left" Text="{Binding mailSettings.EmailText}"/>
                 </DockPanel>
             </TabItem>

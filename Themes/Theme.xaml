@@ -2701,7 +2701,7 @@
         </Setter>
         <Setter Property="Foreground">
             <Setter.Value>
-                <SolidColorBrush Color="{DynamicResource WhiteColor}" />
+                <SolidColorBrush Color="#FF404040" />
             </Setter.Value>
         </Setter>
         <Style.Triggers>

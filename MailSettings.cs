@@ -5,20 +5,20 @@ namespace WpfMailSender
 {
     public class MailSettings : INotifyPropertyChanged
     {
-        private string _emailTo;
+        //private string _emailTo;
         private string _emailSubject;
         private string _emailText;
 
-        public string EmailTo
-        {
-            get => _emailTo;
-            set
-            {
-                if (value == _emailTo) return;
-                _emailTo = value;
-                OnPropertyChanged(nameof(_emailTo));
-            }
-        }
+        //public string EmailTo
+        //{
+        //    get => _emailTo;
+        //    set
+        //    {
+        //        if (value == _emailTo) return;
+        //        _emailTo = value;
+        //        OnPropertyChanged(nameof(_emailTo));
+        //    }
+        //}
         public string EmailSubject
         {
             get => _emailSubject;
