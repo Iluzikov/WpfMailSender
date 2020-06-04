@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -60,6 +61,11 @@ namespace WpfMailSender
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             tabCtrl.SelectedItem = tabItemPlanner;
+        }
+
+        private void btnSendAtOnce_Click(object sender, RoutedEventArgs e)
+        {
+            model.SendMessage((IQueryable<Emails>)dgEmails.ItemsSource);
         }
     }
 }

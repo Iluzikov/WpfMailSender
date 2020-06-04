@@ -21,27 +21,17 @@ namespace WpfMailSender
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
-        public AuthorizationWindowViewModel model { get; set; } = new AuthorizationWindowViewModel();
-        SendEndWindow sendEndWindow;
+        public AuthSettings authSettings { get; set; } = new AuthSettings();
 
         public AuthorizationWindow()
         {
             InitializeComponent();
-            DataContext = model;
+            DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (model.IsFillError())
-            {
-                sendEndWindow = new SendEndWindow(model.Status);
-                sendEndWindow.Owner = this;
-                sendEndWindow.ShowDialog();
-            }
-            else
-            {
-                DialogResult = true;
-            }
+            DialogResult = true;
         }
 
 

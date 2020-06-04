@@ -142,7 +142,7 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                    <Button Height="25">
+                    <Button x:Name="btnSendAtOnce" Height="25" Click="btnSendAtOnce_Click">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Resources/Img/sendnow.png" 

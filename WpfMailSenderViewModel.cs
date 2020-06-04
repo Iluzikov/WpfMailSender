@@ -1,27 +1,37 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace WpfMailSender
 {
     class WpfMailSenderViewModel
     {
         public MailSettings mailSettings { get; set; } = new MailSettings();
+        //public AuthSettings authSettings { get; set; } = new AuthSettings();
         public SmtpSettings SelectedSmtp { get; set; } = new SmtpSettings();
-        EmailSendServiceClass _servis;
+        EmailSendServiceClass _service;
+        //ObservableCollection<Emails> selectedEmails { get; set; } = new ObservableCollection<Emails>();
         public string Status { get; set; }
  
-        public void SendMessage(SmtpSettings selectedSmtpServer, AuthSettings authSettings, MailSettings mailSettings)
+        public void SendMessage(IQueryable<Emails> emails)
         {
-            _servis = new EmailSendServiceClass(selectedSmtpServer, authSettings, mailSettings);
-            //return _servis.SendMails();
+            if (IsFillError()) return;
+            AuthorizationWindow authWindow = new AuthorizationWindow();
+            if (authWindow.ShowDialog() == true)
+            {
+                _service = new EmailSendServiceClass(SelectedSmtp, authWindow.authSettings, mailSettings);
+                _service.SendMails(emails);
+            }
         }
 
         public bool IsFillError()
         {
-            if (string.IsNullOrWhiteSpace(mailSettings.EmailText))
+            if (string.IsNullOrWhiteSpace(mailSettings.EmailText) 
+                || string.IsNullOrWhiteSpace(mailSettings.EmailSubject))
             {
-                Status = "Введите адрес получателя и текст сообщения";
+                MessageBox.Show("Введите адрес получателя и текст сообщения", "Внимание!");
                 return true;
             }
             return false;

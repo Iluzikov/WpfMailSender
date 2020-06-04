@@ -24,7 +24,7 @@
                 BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5">
 
             <StackPanel>
-                <StackPanel>
+                <!--<StackPanel>
                     <TextBlock Text="Сервер:" />
                     <ComboBox ItemsSource="{Binding smtpSettings}" SelectedValue="{Binding selectedSmtpServer}">
                         <ComboBox.ItemTemplate>
@@ -33,7 +33,7 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                </StackPanel>
+                </StackPanel>-->
 
                 <StackPanel >
                     <TextBlock Text="Логин:"/>
