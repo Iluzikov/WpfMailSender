@@ -28,66 +28,112 @@
                 <TextBlock Text="Выполнил: Лузиков Иван" FontWeight="Bold" Margin="0,0,5,0"/>
             </StatusBarItem>
         </StatusBar>
-        <TabControl DockPanel.Dock="Left">
-            <TabItem Header="Формирование группы рассылки">
-                <ToolBarTray Height="65" VerticalAlignment="Top" >
-                    <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Label Content="Выбрать отправителя" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                        <ComboBox Width="270" Height="25"
-                                  ToolTip="Выбрать Email отправителя" Margin="0,0,5,0">
-                        </ComboBox>
-                        <Button Height="25" Width="25"
-                                ToolTip="Добавить отправителя"
-                                Style="{StaticResource squareBtn}">
-                            <Image Source="/Resources/Img/add_icon.png" />
-                        </Button>
-                        <Button Height="25" Width="25"
-                                ToolTip="Редактировать отправителя"
-                                Style="{StaticResource squareBtn}">
-                            <Image Source="/Resources/Img/edit_icon.png" />
-                        </Button>
-                        <Button Height="25" Width="25"
-                                ToolTip="Удалить отправителя"
-                                Style="{StaticResource squareBtn}">
-                            <Image Source="/Resources/Img/delete_icon.png" />
-                        </Button>
-                    </ToolBar>
+        
+        <TabControl x:Name="tabCtrl" DockPanel.Dock="Left">
+            <TabItem Header="Формирование группы рассылки" x:Name="tabItemMailingGroup">
+                <DockPanel>
+                    <ToolBarTray Height="65" VerticalAlignment="Top" DockPanel.Dock="Top" >
+                        <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Label Content="Выбрать отправителя" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            <ComboBox Width="270" Height="25"
+                                      ToolTip="Выбрать Email отправителя" Margin="0,0,5,0">
+                            </ComboBox>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Добавить отправителя"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/add_icon.png" />
+                            </Button>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Редактировать отправителя"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/edit_icon.png" />
+                            </Button>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Удалить отправителя"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/delete_icon.png" />
+                            </Button>
+                        </ToolBar>
 
-                    <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                        <ComboBox Width="270" Height="25"
-                                  ToolTip="Список SMTP серверов" Margin="0,0,5,0">
-                        </ComboBox>
-                        <Button Height="25" Width="25"
-                                ToolTip="Добавить SMTP сервер"
-                                Style="{StaticResource squareBtn}">
-                            <Image Source="/Resources/Img/add_icon.png" />
-                        </Button>
-                        <Button Height="25" Width="25"
-                                ToolTip="Редактировать SMTP сервер"
-                                Style="{StaticResource squareBtn}">
-                            <Image Source="/Resources/Img/edit_icon.png" />
-                        </Button>
-                        <Button Height="25" Width="25"
-                                ToolTip="Удалить SMTP сервер"
-                                Style="{StaticResource squareBtn}">
-                            <Image Source="/Resources/Img/delete_icon.png" />
-                        </Button>
-                    </ToolBar>
+                        <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                 Band="1" BandIndex="0">
+                            <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            <ComboBox Width="270" Height="25"
+                                      ToolTip="Список SMTP серверов" Margin="0,0,5,0">
+                            </ComboBox>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Добавить SMTP сервер"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/add_icon.png" />
+                            </Button>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Редактировать SMTP сервер"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/edit_icon.png" />
+                            </Button>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Удалить SMTP сервер"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/delete_icon.png" />
+                            </Button>
+                        </ToolBar>
+                        
+                        <ToolBar Height="30" Band="0" BandIndex="1">
+                            <Label Content="Перейти в планировщик" VerticalAlignment="Center"  Margin="5,0,5,0"/>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Удалить SMTP сервер"
+                                    Style="{StaticResource squareBtn}" Click="Button_Click">
+                                <Image Source="/Resources/Img/alarmclock.png" />
+                            </Button>
+                        </ToolBar>
+
+                        <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                 Band="1" BandIndex="1">
+                            <Label Content="Список адресатов" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                            
+                            <Button Height="25" Width="25"
+                                    ToolTip="Добавить адресата"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/add_icon.png" />
+                            </Button>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Редактировать адресата"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/edit_icon.png" />
+                            </Button>
+                            <Button Height="25" Width="25"
+                                    ToolTip="Удалить адресата"
+                                    Style="{StaticResource squareBtn}">
+                                <Image Source="/Resources/Img/delete_icon.png" />
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+
                     
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <GridSplitter Width="3" Background="Transparent" Panel.ZIndex="1000"/>
+                        <GroupBox Header="Left">
+                            <Label Content="Left side"/>
+                        </GroupBox>
+                        <GroupBox Grid.Column="1" Header="Right">
+                            <Label Content="Right side"/>
+                        </GroupBox>
+                    </Grid>
+                        
+                </DockPanel>
+            </TabItem>
 
-                </ToolBarTray>
+            <TabItem Header="Планировщик" x:Name="tabItemPlanner">
+
 
 
             </TabItem>
 
-            <TabItem Header="Планировщик">
-
-
-
-            </TabItem>
-
-            <TabItem Header="Редактор писем">
+            <TabItem Header="Редактор писем" x:Name="tabItemTextMailEditor">
                 <DockPanel Grid.Column="1" Margin="10,0,5,0">
                     <Grid DockPanel.Dock="Top" Margin="5,10,0,0">
                         <Grid.RowDefinitions>
@@ -118,7 +164,7 @@
                 </DockPanel>
             </TabItem>
 
-            <TabItem Header="Статистика">
+            <TabItem Header="Статистика" x:Name="tabItemStatistics">
                 
             </TabItem>
         </TabControl>

@@ -135,5 +135,8 @@
   <ItemGroup>
     <Resource Include="mail.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Img\alarmclock.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

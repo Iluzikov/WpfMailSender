@@ -53,5 +53,10 @@ namespace WpfMailSender
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            tabCtrl.SelectedItem = tabItemPlanner;
+        }
     }
 }
