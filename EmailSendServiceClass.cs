@@ -11,11 +11,11 @@ namespace WpfMailSender
 {
     public class EmailSendServiceClass
     {
-        private SmtpSettings _smtp;
+        private Smtp _smtp;
         private AuthSettings _auth;
         private MailSettings _mail;
 
-        public EmailSendServiceClass(SmtpSettings smtp, AuthSettings auth, MailSettings mail)
+        public EmailSendServiceClass(Smtp smtp, AuthSettings auth, MailSettings mail)
         {
             _smtp = smtp;
             _auth = auth;
@@ -30,7 +30,7 @@ namespace WpfMailSender
                 mm.Body = _mail.EmailText;
                 mm.IsBodyHtml = false;
 
-                using (SmtpClient sc = new SmtpClient(_smtp.SmtpServer, _smtp.SmtpServerPort))
+                using (SmtpClient sc = new SmtpClient(_smtp.Server, _smtp.Port))
                 {
                     sc.EnableSsl = true;
                     sc.DeliveryMethod = SmtpDeliveryMethod.Network;

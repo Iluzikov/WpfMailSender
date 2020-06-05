@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -65,11 +66,13 @@ namespace WpfMailSender
 
         private void btnSendAtOnce_Click(object sender, RoutedEventArgs e)
         {
-            model.SendMessage((IQueryable<Emails>)dgEmails.ItemsSource);
+            model.SendMessage((IQueryable<Emails>)dgEmails.ItemsSource, (Smtp)cbSmtp.SelectedItem);
         }
 
         private void btnSendLater_Click(object sender, RoutedEventArgs e)
         {
+            var selectedDate = cldSchedulDate.SelectedDate ?? DateTime.Today;
+            model.SendMessageLater((IQueryable<Emails>)dgEmails.ItemsSource, (Smtp)cbSmtp.SelectedItem, selectedDate, tPicker.Text);
 
         }
     }

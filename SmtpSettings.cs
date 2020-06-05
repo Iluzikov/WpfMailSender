@@ -5,9 +5,20 @@ namespace WpfMailSender
 {
     public class SmtpSettings : INotifyPropertyChanged
     {
+        private int _id;
         private string _name;
-        private string _smtpServer;
         private int _smtpServerPort;
+        private string _smtpServer;
+
+        public SmtpSettings(int id, string name, int port, string server)
+        {
+            Id = id;
+            Name = name;
+            Port = port;
+            Server = server;
+        }
+
+        public int Id { get => _id; set => _id = value; }
         public string Name
         {
             get => _name;
@@ -18,17 +29,7 @@ namespace WpfMailSender
                 OnPropertyChanged(nameof(_name));
             }
         }
-        public string SmtpServer
-        {
-            get => _smtpServer;
-            set
-            {
-                if (value == _smtpServer) return;
-                _smtpServer = value;
-                OnPropertyChanged(nameof(_smtpServer));
-            }
-        }
-        public int SmtpServerPort
+        public int Port
         {
             get => _smtpServerPort;
             set
@@ -38,6 +39,17 @@ namespace WpfMailSender
                 OnPropertyChanged(nameof(_smtpServerPort));
             }
         }
+        public string Server
+        {
+            get => _smtpServer;
+            set
+            {
+                if (value == _smtpServer) return;
+                _smtpServer = value;
+                OnPropertyChanged(nameof(_smtpServer));
+            }
+        }
+        
 
 
         public event PropertyChangedEventHandler PropertyChanged;

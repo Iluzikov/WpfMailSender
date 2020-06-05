@@ -59,7 +59,7 @@
                         <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
                                  Band="1" BandIndex="0">
                             <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                            <ComboBox x:Name="cbSmtp" SelectedItem="{Binding SelectedSmtp}"
+                            <ComboBox x:Name="cbSmtp"
                                       Width="270" Height="25"
                                       ToolTip="Список SMTP серверов" Margin="0,0,5,0">
                                 <ComboBox.ItemTemplate>
@@ -131,7 +131,7 @@
             <TabItem Header="Планировщик" x:Name="tabItemPlanner">
                 <StackPanel Width="180" HorizontalAlignment="Left">
                     <Calendar x:Name="cldSchedulDate"/>
-                    <xctk:DateTimePicker/>
+                    <xctk:TimePicker x:Name="tPicker"/>
                     <Button x:Name="btnSendLater"
                             Height="25" Margin="0,5,0,5" Click="btnSendLater_Click">
                         <Button.Content>
