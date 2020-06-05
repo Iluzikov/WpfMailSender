@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMailSender", "WpfMailSender.csproj", "{0351F2EA-47E2-4D0C-88F3-94A9D3D82D23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfMailSender", "WpfMailSender\WpfMailSender.csproj", "{0351F2EA-47E2-4D0C-88F3-94A9D3D82D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodePasswordDLL", "..\CodePasswordDLL\CodePasswordDLL.csproj", "{8FCF6C31-1FB8-4291-A20D-53A8E8C0D585}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodePasswordDLL", "CodePasswordDLL\CodePasswordDLL.csproj", "{8FCF6C31-1FB8-4291-A20D-53A8E8C0D585}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
