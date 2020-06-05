@@ -10,11 +10,8 @@ namespace WpfMailSender
     class WpfMailSenderViewModel
     {
         public MailSettings mailSettings { get; set; } = new MailSettings();
-        //public AuthSettings authSettings { get; set; } = new AuthSettings();
-        //public SmtpSettings SelectedSmtp { get; set; } = new SmtpSettings();
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
-        //ObservableCollection<Emails> selectedEmails { get; set; } = new ObservableCollection<Emails>();
         public string Status { get; set; }
  
         public void SendMessage(IQueryable<Emails> emails, Smtp selectedSmtp)
@@ -50,7 +47,6 @@ namespace WpfMailSender
                 _sendService = new EmailSendServiceClass(selectedSmtp, authWindow.authSettings, mailSettings);
                 _sendService.SendMails(emails);
             }
-
         }
 
         public bool IsFillError()
@@ -63,11 +59,6 @@ namespace WpfMailSender
             }
             return false;
         }
-        //bool EmailIsValid(string email)
-        //{
-        //    string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
-        //    Match isMatch = Regex.Match(email, pattern, RegexOptions.IgnoreCase);
-        //    return isMatch.Success;
-        //}
+        
     }
 }
