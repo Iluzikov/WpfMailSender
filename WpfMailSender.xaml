@@ -132,7 +132,8 @@
                 <StackPanel Width="180" HorizontalAlignment="Left">
                     <Calendar x:Name="cldSchedulDate"/>
                     <xctk:DateTimePicker/>
-                    <Button Height="25" Margin="0,5,0,5">
+                    <Button x:Name="btnSendLater"
+                            Height="25" Margin="0,5,0,5" Click="btnSendLater_Click">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Resources/Img/sendlater.png"

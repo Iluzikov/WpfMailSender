@@ -99,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
+    <Compile Include="SchedulerClass.cs" />
     <Compile Include="SendEndWindow.xaml.cs">
       <DependentUpon>SendEndWindow.xaml</DependentUpon>
     </Compile>

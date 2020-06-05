@@ -67,5 +67,10 @@ namespace WpfMailSender
         {
             model.SendMessage((IQueryable<Emails>)dgEmails.ItemsSource);
         }
+
+        private void btnSendLater_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
