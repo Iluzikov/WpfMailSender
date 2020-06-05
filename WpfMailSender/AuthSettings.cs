@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using CodePasswordDLL;
 
 namespace WpfMailSender
 {
@@ -20,11 +21,11 @@ namespace WpfMailSender
         }
         public string Password
         {
-            get => _password;
+            get => (_password);
             set
             {
                 if (value == _password) return;
-                _password = value;
+                _password = CodePassword.EncryptPassword(value);
                 OnPropertyChanged(nameof(_password));
             }
         }

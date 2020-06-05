@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
+using CodePasswordDLL;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -35,7 +35,7 @@ namespace WpfMailSender
                     sc.EnableSsl = true;
                     sc.DeliveryMethod = SmtpDeliveryMethod.Network;
                     sc.UseDefaultCredentials = false;
-                    sc.Credentials = new NetworkCredential(_auth.EmailFrom, _auth.Password);
+                    sc.Credentials = new NetworkCredential(_auth.EmailFrom, CodePassword.GetPassword(_auth.Password));
                     try { sc.Send(mm); }
                     catch (Exception ex)
                     {
