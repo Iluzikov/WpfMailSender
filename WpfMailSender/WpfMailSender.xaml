@@ -10,7 +10,6 @@
         Title="Рассыльщик писем" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="squareBtn" TargetType="Button">
-            
         </Style>
     </Window.Resources>
     <DockPanel>
@@ -27,7 +26,7 @@
                 <TextBlock Text="Ready!"/>
             </StatusBarItem>
             <StatusBarItem Margin="10,0,0,0" >
-                <TabSwitcher1:UserControl1 Height="25" Width="Auto"/>
+                <TabSwitcher1:MyTabSwitcher Height="25" btnNextClick="MyTabSwitcher_btnNextClick" btnPreviousClick="MyTabSwitcher_btnPreviousClick" />
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock Text="Выполнил: Лузиков Иван" FontWeight="Bold" Margin="0,0,5,0"/>
@@ -177,12 +176,6 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         
-                        <!--<TextBlock VerticalAlignment="Center" 
-                                       HorizontalAlignment="Left"
-                                       Text="Кому:" />-->
-                        
-                        <!--<TextBox Grid.Column="1" Text="{Binding mailSettings.EmailTo}"/>-->
-                        
                         <TextBlock Grid.Row="1"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
@@ -193,10 +186,6 @@
                     </Grid>
                     <TextBlock DockPanel.Dock="Top" Margin="5,5,0,5"
                            Text="Текст сообщения:"/>
-                    <!--<Button DockPanel.Dock="Bottom"
-                                Content="Отправить"
-                                Width="100" Margin="0,5,0,0"
-                                HorizontalAlignment="Right" Click="Button_Click_1"/>-->
                     <TextBox DockPanel.Dock="Left" Text="{Binding mailSettings.EmailText}"/>
                 </DockPanel>
             </TabItem>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TabSwitcher.UserControl1"
+﻿<UserControl x:Class="TabSwitcher.MyTabSwitcher"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,16 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="230">
     <StackPanel Orientation="Horizontal">
-        <Button x:Name="btnNext" Width="115" Click="btnNext_Click">
+        <Button x:Name="btnPrevious" Width="115" Click="btnPrevious_Click">
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Img/arrow_back.png" />
+                <Image Source="Img/arrow_back.png" />
                 <TextBlock Text="Предыдущая" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <Button x:Name="btnPrevious" Width="115" Click="btnPrevious_Click">
+        <Button   x:Name="btnNext" Width="115" Click="btnNext_Click">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Следующая" VerticalAlignment="Center"/>
-                <Image Source="/Img/arrow_forward.png" />
+                <Image Source="Img/arrow_forward.png" />
             </StackPanel>
         </Button>
     </StackPanel>

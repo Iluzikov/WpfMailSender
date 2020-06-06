@@ -7,7 +7,7 @@ namespace TabSwitcher
     /// <summary>
     /// Логика взаимодействия для UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class MyTabSwitcher : UserControl
     {
         private bool _bHidebtnPrevious = false;
         private bool _bHidebtnNext = false;
@@ -68,7 +68,7 @@ namespace TabSwitcher
             else if (_bHidebtnPrevious && !_bHidebtnNext) BtnPreviousTrueBtnNextFalse();
         }
 
-        public UserControl1()
+        public MyTabSwitcher()
         {
             InitializeComponent();
         }
