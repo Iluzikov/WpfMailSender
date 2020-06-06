@@ -60,7 +60,6 @@ namespace TabSwitcher
             btnPrevious.Visibility = Visibility.Hidden;
         }
 
-
         private void SetButtons()
         {
             if (_bHidebtnPrevious && _bHidebtnNext) BtnNextTrueBtnPreviousTrue();
@@ -72,6 +71,19 @@ namespace TabSwitcher
         public UserControl1()
         {
             InitializeComponent();
+        }
+
+        public event RoutedEventHandler btnNextClick;
+        public event RoutedEventHandler btnPreviousClick;
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            btnNextClick?.Invoke(sender, e);
+        }
+
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            btnPreviousClick?.Invoke(sender, e);
         }
     }
 }
