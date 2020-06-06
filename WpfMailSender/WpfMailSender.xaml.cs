@@ -75,5 +75,15 @@ namespace WpfMailSender
             model.SendMessageLater((IQueryable<Emails>)dgEmails.ItemsSource, (Smtp)cbSmtp.SelectedItem, selectedDate, tPicker.Text);
 
         }
+
+        private void MyTabSwitcher_btnNextClick(object sender, RoutedEventArgs e)
+        {
+            tabCtrl.SelectedIndex++;
+        }
+
+        private void MyTabSwitcher_btnPreviousClick(object sender, RoutedEventArgs e)
+        {
+            tabCtrl.SelectedIndex--;
+        }
     }
 }
