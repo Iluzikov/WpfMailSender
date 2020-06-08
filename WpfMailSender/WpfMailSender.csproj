@@ -91,30 +91,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AuthorizationWindow.xaml.cs">
+    <Compile Include="Models\Pass.cs" />
+    <Compile Include="Views\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AuthorizationWindowViewModel.cs" />
-    <Compile Include="DataBaseClass.cs" />
-    <Compile Include="DataBase.designer.cs">
+    <Compile Include="ViewModels\AuthorizationWindowViewModel.cs" />
+    <Compile Include="Data\DataBaseClass.cs" />
+    <Compile Include="Data\DataBase.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
-    <Compile Include="SchedulerClass.cs" />
-    <Compile Include="SendEndWindow.xaml.cs">
+    <Compile Include="Services\SchedulerClass.cs" />
+    <Compile Include="Views\SendEndWindow.xaml.cs">
       <DependentUpon>SendEndWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WpfMailSenderViewModel.cs" />
-    <Page Include="AuthorizationWindow.xaml">
+    <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WpfMailSenderViewModel.cs" />
+    <Page Include="Views\AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SendEndWindow.xaml">
+    <Page Include="Views\SendEndWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WpfMailSender.xaml">
+    <Page Include="Views\TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WpfMailSender.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -122,11 +128,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AuthSettings.cs" />
-    <Compile Include="EmailSendServiceClass.cs" />
-    <Compile Include="MailSettings.cs" />
-    <Compile Include="SmtpSettings.cs" />
-    <Compile Include="WpfMailSender.xaml.cs">
+    <Compile Include="Models\AuthSettings.cs" />
+    <Compile Include="Services\EmailSendServiceClass.cs" />
+    <Compile Include="Models\MailSettings.cs" />
+    <Compile Include="Models\SmtpSettings.cs" />
+    <Compile Include="Views\TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -153,12 +162,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataBase.dbml">
+    <None Include="Data\DataBase.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataBase.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataBase.dbml.layout">
+    <None Include="Data\DataBase.dbml.layout">
       <DependentUpon>DataBase.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -212,10 +221,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\MailSenderDB.mdf">
+    <Content Include="DataBase\MailSenderDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\MailSenderDB_log.ldf">
+    <Content Include="DataBase\MailSenderDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>MailSenderDB.mdf</DependentUpon>
     </Content>
@@ -233,11 +242,6 @@
       <Name>TabSwitcher</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
