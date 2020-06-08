@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Resources;
 using System.Windows;
+using System.Windows.Input;
+using WpfMailSender.Commands;
 using WpfMailSender.Data;
 using WpfMailSender.Models;
 using WpfMailSender.Services;
@@ -14,16 +16,64 @@ namespace WpfMailSender.ViewModels
         public MailSettings mailSettings { get; set; } = new MailSettings();
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
-        
+        //public DataBaseClass dbClass { get; set; } = new DataBaseClass();
+
+
+
+        private Smtp _selectedSmtp;
+        public Smtp SelectedSmtp
+        {
+            get => _selectedSmtp;
+            set => Set(ref _selectedSmtp, value);
+        }
+
         /// <summary>
         /// Статус
         /// </summary>
         private string _status;
-        public string Status 
+        public string Status
         {
             get => _status;
             set => Set(ref _status, value);
         }
+
+        public WpfMailSenderViewModel()
+        {
+            #region Команды
+
+            CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecut);
+            SendAtOnceCommand = new RelayCommand(OnSendAtOnceCommandExecuted, CanSendAtOnceCommandExecut);
+
+            #endregion
+
+
+        }
+
+        #region Команды
+
+        #region Закрывает приложение
+        public ICommand CloseApplicationCommand { get; }
+        private bool CanCloseApplicationCommandExecut(object p) => true;
+        private void OnCloseApplicationCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+        #endregion
+
+        #region Отправить сразу
+        public ICommand SendAtOnceCommand { get; }
+        
+
+        private bool CanSendAtOnceCommandExecut(object p) => true;
+        private void OnSendAtOnceCommandExecuted(object p)
+        {
+            //_sendService = new EmailSendServiceClass(selectedSmtp, authWindow.authSettings, mailSettings);
+            //_sendService.SendMails(emails);
+        }
+        #endregion
+
+
+        #endregion
 
         public void SendMessage(IQueryable<Emails> emails, Smtp selectedSmtp)
         {

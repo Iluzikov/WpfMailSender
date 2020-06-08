@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:WpfMailSender.Views"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
         xmlns:TabSwitcher1="clr-namespace:TabSwitcher;assembly=TabSwitcher"
+        xmlns:vm="clr-namespace:WpfMailSender.ViewModels"
         mc:Ignorable="d"
         Title="Рассыльщик писем" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:WpfMailSenderViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <Style x:Key="squareBtn" TargetType="Button">
         </Style>
@@ -15,7 +19,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Закрыть" Click="MenuItem_Click"/>
+                <MenuItem Header="Закрыть" Command="{Binding CloseApplicationCommand}"/>
             </MenuItem>
             <MenuItem Header="Помощь">
                 <MenuItem Header="О программе"/>
@@ -26,7 +30,7 @@
                 <TextBlock Text="Ready!"/>
             </StatusBarItem>
             <StatusBarItem Margin="10,0,0,0" >
-                <TabSwitcher1:MyTabSwitcher Height="25" btnNextClick="MyTabSwitcher_btnNextClick" btnPreviousClick="MyTabSwitcher_btnPreviousClick" />
+                <TabSwitcher1:MyTabSwitcher Height="25" />
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock Text="Выполнил: Лузиков Иван" FontWeight="Bold" Margin="0,0,5,0"/>
@@ -62,7 +66,8 @@
                         <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
                                  Band="1" BandIndex="0">
                             <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                            <ComboBox x:Name="cbSmtp"
+                            <ComboBox x:Name="cbSmtp" 
+                                      ItemsSource="{Binding dbContext.DBSmtp}"
                                       Width="270" Height="25"
                                       ToolTip="Список SMTP серверов" Margin="0,0,5,0">
                                 <ComboBox.ItemTemplate>
@@ -119,7 +124,9 @@
                         </ToolBar>
                     </ToolBarTray>
 
-                    <DataGrid x:Name="dgEmails" IsReadOnly="True" AutoGenerateColumns="False"
+                    <DataGrid x:Name="dgEmails" 
+                              ItemsSource="{Binding DataBaseClass.DBEmails}"
+                              IsReadOnly="True" AutoGenerateColumns="False"
                               AlternatingRowBackground="AliceBlue">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="#" Width="10*" Binding="{Binding Id}"/>
