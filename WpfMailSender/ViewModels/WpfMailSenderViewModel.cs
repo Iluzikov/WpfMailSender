@@ -1,18 +1,29 @@
 ﻿using System;
 using System.Linq;
+using System.Resources;
 using System.Windows;
 using WpfMailSender.Data;
 using WpfMailSender.Models;
 using WpfMailSender.Services;
+using WpfMailSender.ViewModels.Base;
 
 namespace WpfMailSender.ViewModels
 {
-    class WpfMailSenderViewModel
+    class WpfMailSenderViewModel : ViewModelBase
     {
         public MailSettings mailSettings { get; set; } = new MailSettings();
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
-        public string Status { get; set; }
+        
+        /// <summary>
+        /// Статус
+        /// </summary>
+        private string _status;
+        public string Status 
+        {
+            get => _status;
+            set => Set(ref _status, value);
+        }
 
         public void SendMessage(IQueryable<Emails> emails, Smtp selectedSmtp)
         {
