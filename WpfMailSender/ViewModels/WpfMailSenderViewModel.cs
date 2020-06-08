@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Resources;
 using System.Windows;
@@ -16,8 +17,14 @@ namespace WpfMailSender.ViewModels
         public MailSettings mailSettings { get; set; } = new MailSettings();
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
-        //public DataBaseClass dbClass { get; set; } = new DataBaseClass();
+        DataAccessService _dbAccessService;
 
+        private ObservableCollection<Emails> _emailsList;
+        public  ObservableCollection<Emails> EmailsList
+        {
+            get => _emailsList;
+            set => Set(ref _emailsList, value);
+        }
 
 
         private Smtp _selectedSmtp;
@@ -45,8 +52,20 @@ namespace WpfMailSender.ViewModels
             SendAtOnceCommand = new RelayCommand(OnSendAtOnceCommandExecuted, CanSendAtOnceCommandExecut);
 
             #endregion
+            
+            _dbAccessService = new DataAccessService();
+            GetEmails();
 
+        }
 
+        void GetEmails()
+        {
+            EmailsList = new ObservableCollection<Emails>();
+            EmailsList.Clear();
+            foreach (var item in _dbAccessService.GetEmails())
+            {
+                EmailsList.Add(item);
+            }
         }
 
         #region Команды

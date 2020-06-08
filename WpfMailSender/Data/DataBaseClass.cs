@@ -6,35 +6,35 @@ using System.Threading.Tasks;
 
 namespace WpfMailSender.Data
 {
-    public static class DataBaseClass
-    {
-        private static DataEmailsDataContext _emails = new DataEmailsDataContext();
-        public static IQueryable<Emails> DBEmails
-        {
-            get
-            {
-                return _emails.Emails.Select(c => c);
-            }
-        }
+    //public class DataBaseClass
+    //{
+    //    private DataEmailsDataContext _emails = new DataEmailsDataContext();
+    //    public IQueryable<Emails> DBEmails
+    //    {
+    //        get
+    //        {
+    //            return _emails.Emails.Select(c => c);
+    //        }
+    //    }
 
-        private static DataEmailsDataContext _smtpServers = new DataEmailsDataContext();
+    //    private DataEmailsDataContext _smtpServers = new DataEmailsDataContext();
 
-        public static IQueryable<Smtp> DBSmtp
-        {
-            get
-            {
-                return _smtpServers.Smtp.Select(c => c);
-            }
-        }
+    //    public IQueryable<Smtp> DBSmtp
+    //    {
+    //        get
+    //        {
+    //            return _smtpServers.Smtp.Select(c => c);
+    //        }
+    //    }
 
-        private static DataEmailsDataContext _senders = new DataEmailsDataContext();
+    //    private DataEmailsDataContext _senders = new DataEmailsDataContext();
 
-        public static IQueryable<Sender> DBSenders
-        {
-            get
-            {
-                return _senders.Sender.Select(c => c);
-            }
-        }
-    }
+    //    public IQueryable<Sender> DBSenders
+    //    {
+    //        get
+    //        {
+    //            return _senders.Sender.Select(c => c);
+    //        }
+    //    }
+    //}
 }

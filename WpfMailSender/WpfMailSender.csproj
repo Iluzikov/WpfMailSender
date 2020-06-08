@@ -94,6 +94,7 @@
     <Compile Include="Commands\Base\CommandBase.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Models\Pass.cs" />
+    <Compile Include="Services\DataAccessService.cs" />
     <Compile Include="Views\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>

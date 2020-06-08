@@ -67,7 +67,7 @@
                                  Band="1" BandIndex="0">
                             <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
                             <ComboBox x:Name="cbSmtp" 
-                                      ItemsSource="{Binding dbContext.DBSmtp}"
+                                      
                                       Width="270" Height="25"
                                       ToolTip="Список SMTP серверов" Margin="0,0,5,0">
                                 <ComboBox.ItemTemplate>
@@ -125,7 +125,7 @@
                     </ToolBarTray>
 
                     <DataGrid x:Name="dgEmails" 
-                              ItemsSource="{Binding DataBaseClass.DBEmails}"
+                              ItemsSource="{Binding EmailsList}"
                               IsReadOnly="True" AutoGenerateColumns="False"
                               AlternatingRowBackground="AliceBlue">
                         <DataGrid.Columns>
@@ -165,9 +165,7 @@
                         </Button.Content>
                     </Button>
                     
-                    
                 </StackPanel>
-
 
             </TabItem>
 
@@ -187,7 +185,6 @@
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        Text="Тема:"/>
-                        
                         
                         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding mailSettings.EmailSubject}"/>
                     </Grid>
