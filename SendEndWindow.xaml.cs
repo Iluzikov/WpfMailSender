@@ -10,19 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfMailSender
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для SendEndWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SendEndWindow : Window
     {
-        public MainWindow()
+        public SendEndWindow()
         {
             InitializeComponent();
+        }
+
+        public SendEndWindow(string messageText):this()
+        {
+            tbText.Text = messageText;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }
