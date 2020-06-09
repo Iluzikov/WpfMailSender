@@ -3,11 +3,11 @@ using WpfMailSender.Data;
 
 namespace WpfMailSender.Services
 {
-    //public interface IDataAccessService
-    //{
-    //    ObservableCollection<Emails> GetEmails();
-    //}
-    class DataAccessService
+    public interface IDataAccessService
+    {
+        ObservableCollection<Emails> GetEmails();
+    }
+    public class DataAccessService
     {
         private DataEmailsDataContext _context;
         public DataAccessService()
