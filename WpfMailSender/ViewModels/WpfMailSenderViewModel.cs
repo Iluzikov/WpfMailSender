@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Resources;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup;
 using WpfMailSender.Commands;
 using WpfMailSender.Data;
 using WpfMailSender.Models;
@@ -12,13 +11,14 @@ using WpfMailSender.ViewModels.Base;
 
 namespace WpfMailSender.ViewModels
 {
+    [MarkupExtensionReturnType(typeof(WpfMailSenderViewModel))]
     class WpfMailSenderViewModel : ViewModelBase
     {
         public EmailInfoViewModel EmailInfoVM { get; }
         public MailSettings mailSettings { get; set; } = new MailSettings();
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
-        
+
 
         private Smtp _selectedSmtp;
         public Smtp SelectedSmtp
@@ -46,7 +46,7 @@ namespace WpfMailSender.ViewModels
             SendAtOnceCommand = new RelayCommand(OnSendAtOnceCommandExecuted, CanSendAtOnceCommandExecut);
 
             #endregion
-            
+
         }
 
 
@@ -63,7 +63,7 @@ namespace WpfMailSender.ViewModels
 
         #region Отправить сразу
         public ICommand SendAtOnceCommand { get; }
-        
+
 
         private bool CanSendAtOnceCommandExecut(object p) => true;
         private void OnSendAtOnceCommandExecuted(object p)

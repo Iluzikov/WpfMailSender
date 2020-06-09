@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using System.Windows.Markup;
 
 namespace WpfMailSender.ViewModels.Base
 {
-    internal abstract class ViewModelBase : INotifyPropertyChanged
+    internal abstract class ViewModelBase : MarkupExtension, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,6 +20,13 @@ namespace WpfMailSender.ViewModels.Base
             field = value;
             OnPropertyChanged(propName);
             return true;
+        }
+
+        public override object ProvideValue(IServiceProvider serviceProvider)
+        {
+
+
+            return this;
         }
     }
 }

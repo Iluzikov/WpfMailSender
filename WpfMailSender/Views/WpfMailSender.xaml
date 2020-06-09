@@ -9,10 +9,11 @@
         xmlns:vm="clr-namespace:WpfMailSender.ViewModels"
         xmlns:view="clr-namespace:WpfMailSender.Views"
         mc:Ignorable="d"
+        DataContext="{vm:WpfMailSenderViewModel}"
         Title="Рассыльщик писем" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:WpfMailSenderViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Window.Resources>
         <Style x:Key="squareBtn" TargetType="Button">
         </Style>
