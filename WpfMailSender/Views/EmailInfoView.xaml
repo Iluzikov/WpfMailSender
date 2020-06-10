@@ -14,7 +14,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <Label Content="Поиск по имени" VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
-                <TextBox MinWidth="100" Height="30" Width="250"/>
+                <TextBox MinWidth="100" Height="25" Width="250"/>
             </StackPanel>
         </StackPanel>
         <Button Content="Получить" DockPanel.Dock="Bottom"/>
