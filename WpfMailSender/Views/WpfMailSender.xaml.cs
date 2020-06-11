@@ -14,8 +14,6 @@ namespace WpfMailSender.Views
         public MainWindow()
         {
             InitializeComponent();
-            //dgEmails.ItemsSource = DataBaseClass.DBEmails;
-            //cbSmtp.ItemsSource = DataBaseClass.DBSmtp;
         }
 
         /// <summary>

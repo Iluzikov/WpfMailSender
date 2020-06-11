@@ -36,6 +36,7 @@ namespace WpfMailSender
 
             services.AddSingleton<WpfMailSenderViewModel>();
             services.AddSingleton<EmailInfoViewModel>();
+            services.AddSingleton<MyTabSwitcherViewModel>();
         }
 
     }

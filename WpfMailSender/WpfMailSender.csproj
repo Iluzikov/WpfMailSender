@@ -220,6 +220,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Services\DataAccessService.cs" />
     <Compile Include="ViewModels\EmailInfoViewModel.cs" />
+    <Compile Include="ViewModels\MyTabSwitcherViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -252,6 +253,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\MyTabSwitcher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WpfMailSender.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -264,6 +269,9 @@
     <Compile Include="Services\EmailSendServiceClass.cs" />
     <Compile Include="Models\MailSettings.cs" />
     <Compile Include="Models\SmtpSettings.cs" />
+    <Compile Include="Views\UserControls\MyTabSwitcher.xaml.cs">
+      <DependentUpon>MyTabSwitcher.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>
       <SubType>Code</SubType>
