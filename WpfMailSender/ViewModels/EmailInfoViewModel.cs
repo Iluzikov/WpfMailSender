@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using WpfMailSender.Data;
 using WpfMailSender.Services;
 using WpfMailSender.ViewModels.Base;
 
 namespace WpfMailSender.ViewModels
 {
-    class EmailInfoViewModel : ViewModelBase
+    internal class EmailInfoViewModel : ViewModelBase
     {
-        private WpfMailSenderViewModel MainVM { get; }
+        public WpfMailSenderViewModel MainVM { get; internal set; }
         DataAccessService _dbAccessService;
 
         private IEnumerable<Emails> _emailsList;
@@ -19,18 +17,16 @@ namespace WpfMailSender.ViewModels
             set => Set(ref _emailsList, value);
         }
 
-        public EmailInfoViewModel(WpfMailSenderViewModel MainVM)
+        public EmailInfoViewModel(DataAccessService dataService)
         {
-            this.MainVM = MainVM;
-
-            _dbAccessService = new DataAccessService();
+            _dbAccessService = dataService;
             GetEmails();
         }
 
         void GetEmails()
         {
             EmailsList = _dbAccessService.GetEmails();
-            
+
         }
     }
 }

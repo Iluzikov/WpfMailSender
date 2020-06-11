@@ -220,6 +220,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Services\DataAccessService.cs" />
     <Compile Include="ViewModels\EmailInfoViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>

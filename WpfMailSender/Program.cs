@@ -25,7 +25,7 @@ namespace WpfMailSender
             hostBuilder.ConfigureAppConfiguration((host, cfg) =>
             {
                 cfg.SetBasePath(Environment.CurrentDirectory);
-                cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                //cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             });
 
             hostBuilder.ConfigureServices(App.ConfigureServices);

@@ -12,7 +12,7 @@ using WpfMailSender.ViewModels.Base;
 namespace WpfMailSender.ViewModels
 {
     [MarkupExtensionReturnType(typeof(WpfMailSenderViewModel))]
-    class WpfMailSenderViewModel : ViewModelBase
+    internal class WpfMailSenderViewModel : ViewModelBase
     {
         public EmailInfoViewModel EmailInfoVM { get; }
         public MailSettings mailSettings { get; set; } = new MailSettings();
@@ -37,9 +37,10 @@ namespace WpfMailSender.ViewModels
             set => Set(ref _status, value);
         }
 
-        public WpfMailSenderViewModel()
+        public WpfMailSenderViewModel(EmailInfoViewModel emailInfoModel)
         {
-            EmailInfoVM = new EmailInfoViewModel(this);
+            EmailInfoVM = emailInfoModel;
+            emailInfoModel.MainVM = this;
             #region Команды
 
             CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecut);

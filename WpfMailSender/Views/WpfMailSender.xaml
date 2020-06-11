@@ -9,13 +9,12 @@
         xmlns:vm="clr-namespace:WpfMailSender.ViewModels"
         xmlns:view="clr-namespace:WpfMailSender.Views"
         mc:Ignorable="d"
-        DataContext="{vm:WpfMailSenderViewModel}"
+        DataContext="{Binding WpfMailSenderModel, Source={StaticResource Locator}}"
         Title="Рассыльщик писем" Height="450" Width="800">
-    <!--<Window.DataContext>
-        <vm:WpfMailSenderViewModel/>
-    </Window.DataContext>-->
     <Window.Resources>
         <Style x:Key="squareBtn" TargetType="Button">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="25" />
         </Style>
     </Window.Resources>
     <DockPanel>
@@ -48,18 +47,15 @@
                             <ComboBox Width="270" Height="25"
                                       ToolTip="Выбрать Email отправителя" Margin="0,0,5,0">
                             </ComboBox>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Добавить отправителя"
+                            <Button ToolTip="Добавить отправителя"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/add_icon.png" />
                             </Button>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Редактировать отправителя"
+                            <Button ToolTip="Редактировать отправителя"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/edit_icon.png" />
                             </Button>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Удалить отправителя"
+                            <Button ToolTip="Удалить отправителя"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/delete_icon.png" />
                             </Button>
@@ -69,7 +65,6 @@
                                  Band="1" BandIndex="0">
                             <Label Content="Выбрать SMTP сервер" VerticalAlignment="Center" Margin="5,0,5,0"/>
                             <ComboBox x:Name="cbSmtp" 
-                                      
                                       Width="270" Height="25"
                                       ToolTip="Список SMTP серверов" Margin="0,0,5,0">
                                 <ComboBox.ItemTemplate>
@@ -78,18 +73,15 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Добавить SMTP сервер"
+                            <Button ToolTip="Добавить SMTP сервер"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/add_icon.png" />
                             </Button>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Редактировать SMTP сервер"
+                            <Button ToolTip="Редактировать SMTP сервер"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/edit_icon.png" />
                             </Button>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Удалить SMTP сервер"
+                            <Button ToolTip="Удалить SMTP сервер"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/delete_icon.png" />
                             </Button>
@@ -97,8 +89,7 @@
                         
                         <ToolBar Height="30" Band="0" BandIndex="1">
                             <Label Content="Перейти в планировщик" VerticalAlignment="Center"  Margin="5,0,5,0"/>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Удалить SMTP сервер"
+                            <Button ToolTip="Удалить SMTP сервер"
                                     Style="{StaticResource squareBtn}" Click="Button_Click">
                                 <Image Source="/Resources/Img/alarmclock.png" />
                             </Button>
@@ -108,18 +99,15 @@
                                  Band="1" BandIndex="1">
                             <Label Content="Список адресатов" VerticalAlignment="Center" Margin="5,0,5,0"/>
                             
-                            <Button Height="25" Width="25"
-                                    ToolTip="Добавить адресата"
+                            <Button ToolTip="Добавить адресата"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/add_icon.png" />
                             </Button>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Редактировать адресата"
+                            <Button ToolTip="Редактировать адресата"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/edit_icon.png" />
                             </Button>
-                            <Button Height="25" Width="25"
-                                    ToolTip="Удалить адресата"
+                            <Button ToolTip="Удалить адресата"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/delete_icon.png" />
                             </Button>
