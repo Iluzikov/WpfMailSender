@@ -32,7 +32,7 @@ namespace WpfMailSender
 
         public static void ConfigureServices(HostBuilderContext host, IServiceCollection services)
         {
-            services.AddSingleton<DataAccessService>();
+            services.AddSingleton<IDataAccessService, DataAccessService>();
 
             services.AddSingleton<WpfMailSenderViewModel>();
             services.AddSingleton<EmailInfoViewModel>();

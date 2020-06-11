@@ -8,7 +8,9 @@ namespace WpfMailSender.ViewModels
     internal class EmailInfoViewModel : ViewModelBase
     {
         public WpfMailSenderViewModel MainVM { get; internal set; }
-        DataAccessService _dbAccessService;
+
+        //DataAccessService _dbAccessService;
+        private readonly IDataAccessService _dataAccessService;
 
         private IEnumerable<Emails> _emailsList;
         public IEnumerable<Emails> EmailsList
@@ -17,15 +19,15 @@ namespace WpfMailSender.ViewModels
             set => Set(ref _emailsList, value);
         }
 
-        public EmailInfoViewModel(DataAccessService dataService)
+        public EmailInfoViewModel(IDataAccessService dataService)
         {
-            _dbAccessService = dataService;
+            _dataAccessService = dataService;
             GetEmails();
         }
 
         void GetEmails()
         {
-            EmailsList = _dbAccessService.GetEmails();
+            EmailsList = _dataAccessService.GetEmails();
 
         }
     }

@@ -7,7 +7,7 @@ namespace WpfMailSender.Services
     {
         ObservableCollection<Emails> GetEmails();
     }
-    public class DataAccessService
+    public class DataAccessService : IDataAccessService
     {
         private DataEmailsDataContext _context;
         public DataAccessService()
