@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -91,12 +92,11 @@ namespace WpfMailSender.ViewModels
 
         private bool CanSendAtOnceCommandExecut(object p)
         {
-            //return SelectedSmtp != null;
-            return true;
+            return SelectedSmtp != null;
         }
         private void OnSendAtOnceCommandExecuted(object p)
         {
-            //SendMessage();
+            SendMessage();
         }
         #endregion
 
@@ -117,11 +117,11 @@ namespace WpfMailSender.ViewModels
             if (authWindow.ShowDialog() == true)
             {
                 _sendService = new EmailSendServiceClass(SelectedSmtp, authWindow.authSettings, mailSettings);
-                //_sendService.SendMails();
+                _sendService.SendMails(EmailInfoVM.EmailsList);
             }
         }
 
-        public void SendMessageLater(IQueryable<Emails> emails, Smtp selectedSmtp, DateTime selectedSendDate, string selectedSendTime)
+        public void SendMessageLater(ObservableCollection<Emails> emails, Smtp selectedSmtp, DateTime selectedSendDate, string selectedSendTime)
         {
             if (IsFillError()) return;
             AuthorizationWindow authWindow = new AuthorizationWindow();

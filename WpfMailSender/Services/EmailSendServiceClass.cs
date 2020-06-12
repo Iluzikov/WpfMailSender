@@ -1,5 +1,6 @@
 ﻿using CodePasswordDLL;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -45,7 +46,7 @@ namespace WpfMailSender.Services
             }
         }
 
-        public void SendMails(IQueryable<Emails> emails)
+        public void SendMails(ObservableCollection<Emails> emails)
         {
             foreach (Emails email in emails)
             {

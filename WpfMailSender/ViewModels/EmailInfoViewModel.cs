@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using WpfMailSender.Commands;
 using WpfMailSender.Data;
@@ -13,8 +14,8 @@ namespace WpfMailSender.ViewModels
 
         private readonly IDataAccessService _dataAccessService;
 
-        private IEnumerable<Emails> _emailsList;
-        public IEnumerable<Emails> EmailsList
+        private ObservableCollection<Emails> _emailsList;
+        public ObservableCollection<Emails> EmailsList
         {
             get => _emailsList;
             set => Set(ref _emailsList, value);
@@ -34,7 +35,7 @@ namespace WpfMailSender.ViewModels
             EmailsList = _dataAccessService.GetEmails();
         }
 
-        #region Команды
+        #region Команды получения списка Email
 
         public ICommand GetEmailsCommand { get; }
         private void OnGetEmailsCommandExecuted(object p)
