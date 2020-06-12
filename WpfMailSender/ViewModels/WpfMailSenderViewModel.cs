@@ -150,7 +150,7 @@ namespace WpfMailSender.ViewModels
             if (string.IsNullOrWhiteSpace(mailSettings.EmailText)
                 || string.IsNullOrWhiteSpace(mailSettings.EmailSubject))
             {
-                MessageBox.Show("Введите адрес получателя и текст сообщения", "Внимание!");
+                MessageBox.Show("Введите тему и текст сообщения", "Внимание!");
                 return true;
             }
             return false;

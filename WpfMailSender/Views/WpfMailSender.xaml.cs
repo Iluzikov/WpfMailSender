@@ -27,11 +27,6 @@ namespace WpfMailSender.Views
 
         }
 
-        private void btnSendAtOnce_Click(object sender, RoutedEventArgs e)
-        {
-            //model.SendMessage((IQueryable<Emails>)dgEmails.ItemsSource, (Smtp)cbSmtp.SelectedItem);
-        }
-
         private void btnSendLater_Click(object sender, RoutedEventArgs e)
         {
             //var selectedDate = cldSchedulDate.SelectedDate ?? DateTime.Today;
