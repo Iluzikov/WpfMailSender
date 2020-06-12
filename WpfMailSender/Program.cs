@@ -1,10 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfMailSender
 {
@@ -25,7 +21,6 @@ namespace WpfMailSender
             hostBuilder.ConfigureAppConfiguration((host, cfg) =>
             {
                 cfg.SetBasePath(Environment.CurrentDirectory);
-                //cfg.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
             });
 
             hostBuilder.ConfigureServices(App.ConfigureServices);

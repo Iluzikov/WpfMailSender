@@ -23,5 +23,15 @@ namespace WpfMailSender.Services
             }
             return EmailsList;
         }
+
+        public ObservableCollection<Smtp> GetSmtp()
+        {
+            var SmtpList = new ObservableCollection<Smtp>();
+            foreach (var item in _context.Smtp)
+            {
+                SmtpList.Add(item);
+            }
+            return SmtpList;
+        }
     }
 }

@@ -11,7 +11,6 @@ namespace WpfMailSender.ViewModels
     {
         public WpfMailSenderViewModel MainVM { get; internal set; }
 
-        //DataAccessService _dbAccessService;
         private readonly IDataAccessService _dataAccessService;
 
         private IEnumerable<Emails> _emailsList;
@@ -27,6 +26,9 @@ namespace WpfMailSender.ViewModels
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
         }
 
+        /// <summary>
+        /// Получает список E-mail адресов через класс-сервис
+        /// </summary>
         void GetEmails()
         {
             EmailsList = _dataAccessService.GetEmails();

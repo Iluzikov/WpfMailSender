@@ -233,7 +233,7 @@
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
     <Compile Include="Services\SchedulerClass.cs" />
-    <Compile Include="Views\EmailInfoView.xaml.cs">
+    <Compile Include="Views\UserControls\EmailInfoView.xaml.cs">
       <DependentUpon>EmailInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SendEndWindow.xaml.cs">
@@ -245,7 +245,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EmailInfoView.xaml">
+    <Page Include="Views\UserControls\EmailInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

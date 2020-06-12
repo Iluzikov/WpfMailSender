@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -14,17 +15,32 @@ namespace WpfMailSender.ViewModels
     [MarkupExtensionReturnType(typeof(WpfMailSenderViewModel))]
     internal class WpfMailSenderViewModel : ViewModelBase
     {
+        #region Модели-представлений
         public EmailInfoViewModel EmailInfoVM { get; }
         public MyTabSwitcherViewModel MyTabSwitcherVM { get; }
         public MailSettings mailSettings { get; set; } = new MailSettings();
+        #endregion
+        
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
+        readonly DataAccessService _dataService = new DataAccessService();
+
+        #region данные TabControl
         public int TabItemMax { get; private set; } = 3;
         private int _selectedTab = 0;
         public int SelectedTab
         {
             get => _selectedTab;
             set => Set(ref _selectedTab, value);
+        }
+        #endregion
+
+        #region данные SMTP серверов
+        private IEnumerable<Smtp> _smtpList;
+        public IEnumerable<Smtp> SmtpList
+        {
+            get => _smtpList;
+            set => Set(ref _smtpList, value);
         }
 
         private Smtp _selectedSmtp;
@@ -33,16 +49,16 @@ namespace WpfMailSender.ViewModels
             get => _selectedSmtp;
             set => Set(ref _selectedSmtp, value);
         }
+        #endregion
 
-        /// <summary>
-        /// Статус
-        /// </summary>
+        #region Статус
         private string _status;
         public string Status
         {
             get => _status;
             set => Set(ref _status, value);
         }
+        #endregion
 
         public WpfMailSenderViewModel(EmailInfoViewModel emailInfoModel, MyTabSwitcherViewModel myTabSwitcherViewModel)
         {
@@ -50,6 +66,7 @@ namespace WpfMailSender.ViewModels
             emailInfoModel.MainVM = this;
             MyTabSwitcherVM = myTabSwitcherViewModel;
             myTabSwitcherViewModel.MainVM = this;
+            GetSmtp();
 
             #region Команды
             CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecut);
@@ -57,7 +74,6 @@ namespace WpfMailSender.ViewModels
             #endregion
 
         }
-
 
         #region Команды
 
@@ -73,26 +89,35 @@ namespace WpfMailSender.ViewModels
         #region Отправить сразу
         public ICommand SendAtOnceCommand { get; }
 
-
-        private bool CanSendAtOnceCommandExecut(object p) => true;
+        private bool CanSendAtOnceCommandExecut(object p)
+        {
+            //return SelectedSmtp != null;
+            return true;
+        }
         private void OnSendAtOnceCommandExecuted(object p)
         {
-            //_sendService = new EmailSendServiceClass(selectedSmtp, authWindow.authSettings, mailSettings);
-            //_sendService.SendMails(emails);
+            //SendMessage();
         }
         #endregion
 
-
         #endregion
 
-        public void SendMessage(IQueryable<Emails> emails, Smtp selectedSmtp)
+        /// <summary>
+        /// получить список SMTP серверов
+        /// </summary>
+        private void GetSmtp()
+        {
+            SmtpList = _dataService.GetSmtp();
+        }
+
+        public void SendMessage()
         {
             if (IsFillError()) return;
             AuthorizationWindow authWindow = new AuthorizationWindow();
             if (authWindow.ShowDialog() == true)
             {
-                _sendService = new EmailSendServiceClass(selectedSmtp, authWindow.authSettings, mailSettings);
-                _sendService.SendMails(emails);
+                _sendService = new EmailSendServiceClass(SelectedSmtp, authWindow.authSettings, mailSettings);
+                //_sendService.SendMails();
             }
         }
 
