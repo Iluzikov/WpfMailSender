@@ -24,6 +24,7 @@ namespace WpfMailSender.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             tabCtrl.SelectedItem = tabItemPlanner;
+
         }
 
         private void btnSendAtOnce_Click(object sender, RoutedEventArgs e)

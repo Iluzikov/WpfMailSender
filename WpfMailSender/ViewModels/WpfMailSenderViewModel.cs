@@ -15,10 +15,17 @@ namespace WpfMailSender.ViewModels
     internal class WpfMailSenderViewModel : ViewModelBase
     {
         public EmailInfoViewModel EmailInfoVM { get; }
+        public MyTabSwitcherViewModel MyTabSwitcherVM { get; }
         public MailSettings mailSettings { get; set; } = new MailSettings();
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
-
+        public int TabItemMax { get; private set; } = 3;
+        private int _selectedTab = 0;
+        public int SelectedTab
+        {
+            get => _selectedTab;
+            set => Set(ref _selectedTab, value);
+        }
 
         private Smtp _selectedSmtp;
         public Smtp SelectedSmtp
@@ -37,15 +44,16 @@ namespace WpfMailSender.ViewModels
             set => Set(ref _status, value);
         }
 
-        public WpfMailSenderViewModel(EmailInfoViewModel emailInfoModel)
+        public WpfMailSenderViewModel(EmailInfoViewModel emailInfoModel, MyTabSwitcherViewModel myTabSwitcherViewModel)
         {
             EmailInfoVM = emailInfoModel;
             emailInfoModel.MainVM = this;
-            #region Команды
+            MyTabSwitcherVM = myTabSwitcherViewModel;
+            myTabSwitcherViewModel.MainVM = this;
 
+            #region Команды
             CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecut);
             SendAtOnceCommand = new RelayCommand(OnSendAtOnceCommandExecuted, CanSendAtOnceCommandExecut);
-
             #endregion
 
         }

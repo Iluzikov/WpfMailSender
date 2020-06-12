@@ -17,7 +17,7 @@
                 <TextBox MinWidth="100" Height="25" Width="250"/>
             </StackPanel>
         </StackPanel>
-        <Button Content="Получить" DockPanel.Dock="Bottom"/>
+        <Button Content="Получить" DockPanel.Dock="Bottom" Command="{Binding GetEmailsCommand}"/>
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
                   ItemsSource="{Binding EmailsList}"
                   AlternatingRowBackground="AliceBlue">

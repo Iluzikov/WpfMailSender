@@ -17,7 +17,8 @@
                 <TextBlock Text="Предыдущая" VerticalAlignment="Center" Margin="2,0,0,0"/>
             </StackPanel>
         </Button>
-        <Button   x:Name="btnNext" Width="150" Command="{Binding NextCommand}">
+        <Button   x:Name="btnNext" Width="150" 
+                  Command="{Binding NextCommand}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Следующая" VerticalAlignment="Center" Margin="0,0,12,0"/>
                 <Path Stroke="DarkBlue" StrokeThickness="2" Data="M-10,2 L10,10 L-10,18"/>

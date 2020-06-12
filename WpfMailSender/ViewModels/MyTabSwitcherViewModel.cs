@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using WpfMailSender.Commands;
 using WpfMailSender.ViewModels.Base;
 
@@ -12,7 +7,7 @@ namespace WpfMailSender.ViewModels
     internal class MyTabSwitcherViewModel : ViewModelBase
     {
         public WpfMailSenderViewModel MainVM { get; internal set; }
-        
+
         public MyTabSwitcherViewModel()
         {
             PreviousCommand = new RelayCommand(OnPreviousCommandExecuted, CanPreviousCommandExecute);
@@ -25,21 +20,21 @@ namespace WpfMailSender.ViewModels
         public ICommand PreviousCommand { get; }
         private void OnPreviousCommandExecuted(object p)
         {
-            
+            MainVM.SelectedTab--;
         }
         private bool CanPreviousCommandExecute(object p)
         {
-            return true;
+            return MainVM.SelectedTab > 0;
         }
 
         public ICommand NextCommand { get; }
         private void OnNextCommandExecuted(object p)
         {
-
+            MainVM.SelectedTab++;
         }
         private bool CanNextCommandExecute(object p)
         {
-            return true;
+            return MainVM.SelectedTab < MainVM.TabItemMax;
         }
 
         #endregion

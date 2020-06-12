@@ -17,7 +17,9 @@
             <Setter Property="Height" Value="25" />
             <Setter Property="Width" Value="25" />
         </Style>
+        
     </Window.Resources>
+    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -32,14 +34,15 @@
                 <TextBlock Text="Ready!"/>
             </StatusBarItem>
             <StatusBarItem Margin="10,0,0,0" >
-                <TabSwitcher1:MyTabSwitcher DataContext="{Binding MyTabSwitcherViewModel}"/>
+                <TabSwitcher1:MyTabSwitcher DataContext="{Binding MyTabSwitcherVM}"/>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <TextBlock Text="Выполнил: Лузиков Иван" FontWeight="Bold" Margin="0,0,5,0"/>
             </StatusBarItem>
         </StatusBar>
-        
-        <TabControl x:Name="tabCtrl" DockPanel.Dock="Left">
+
+        <TabControl x:Name="tabCtrl" DockPanel.Dock="Left"
+                    SelectedIndex="{Binding SelectedTab}">
             <TabItem Header="Формирование группы рассылки" x:Name="tabItemMailingGroup">
                 <DockPanel>
                     <ToolBarTray Height="65" VerticalAlignment="Top" DockPanel.Dock="Top" >

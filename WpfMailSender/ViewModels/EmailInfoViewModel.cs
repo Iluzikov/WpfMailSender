@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
+using WpfMailSender.Commands;
 using WpfMailSender.Data;
 using WpfMailSender.Services;
 using WpfMailSender.ViewModels.Base;
@@ -22,13 +24,26 @@ namespace WpfMailSender.ViewModels
         public EmailInfoViewModel(IDataAccessService dataService)
         {
             _dataAccessService = dataService;
-            GetEmails();
+            GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
         }
 
         void GetEmails()
         {
             EmailsList = _dataAccessService.GetEmails();
-
         }
+
+        #region Команды
+
+        public ICommand GetEmailsCommand { get; }
+        private void OnGetEmailsCommandExecuted(object p)
+        {
+            GetEmails();
+        }
+        private bool CanGetEmailsCommandExecute(object p)
+        {
+            return true;
+        }
+
+        #endregion
     }
 }
