@@ -90,7 +90,7 @@
                                 <Image Source="/Resources/Img/delete_icon.png" />
                             </Button>
                         </ToolBar>
-                        
+
                         <ToolBar Height="30" Band="0" BandIndex="1">
                             <Label Content="Перейти в планировщик" VerticalAlignment="Center"  Margin="5,0,5,0"/>
                             <Button ToolTip="Удалить SMTP сервер"
@@ -102,7 +102,7 @@
                         <ToolBar Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
                                  Band="1" BandIndex="1">
                             <Label Content="Список адресатов" VerticalAlignment="Center" Margin="5,0,5,0"/>
-                            
+
                             <Button ToolTip="Добавить адресата"
                                     Style="{StaticResource squareBtn}">
                                 <Image Source="/Resources/Img/add_icon.png" />
@@ -117,9 +117,7 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-
                     <view:EmailInfoView DataContext="{Binding EmailInfoVM}"/>
-
                 </DockPanel>
             </TabItem>
 
@@ -150,9 +148,7 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                    
                 </StackPanel>
-
             </TabItem>
 
             <TabItem Header="Редактор писем" x:Name="tabItemTextMailEditor">

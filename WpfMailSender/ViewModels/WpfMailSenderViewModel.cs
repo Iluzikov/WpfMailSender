@@ -110,6 +110,9 @@ namespace WpfMailSender.ViewModels
             SmtpList = _dataService.GetSmtp();
         }
 
+        /// <summary>
+        /// Отправить сразу
+        /// </summary>
         public void SendMessage()
         {
             if (IsFillError()) return;
@@ -121,6 +124,13 @@ namespace WpfMailSender.ViewModels
             }
         }
 
+        /// <summary>
+        /// Отправить запланированно
+        /// </summary>
+        /// <param name="emails"></param>
+        /// <param name="selectedSmtp"></param>
+        /// <param name="selectedSendDate"></param>
+        /// <param name="selectedSendTime"></param>
         public void SendMessageLater(ObservableCollection<Emails> emails, Smtp selectedSmtp, DateTime selectedSendDate, string selectedSendTime)
         {
             if (IsFillError()) return;
@@ -144,7 +154,11 @@ namespace WpfMailSender.ViewModels
                 _sendService.SendMails(emails);
             }
         }
-
+        
+        /// <summary>
+        /// Проверка заполнения полей сообщения
+        /// </summary>
+        /// <returns></returns>
         public bool IsFillError()
         {
             if (string.IsNullOrWhiteSpace(mailSettings.EmailText)

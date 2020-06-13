@@ -14,6 +14,13 @@ namespace WpfMailSender.ViewModels
 
         private readonly IDataAccessService _dataAccessService;
 
+        private string _myFilter;
+        public string MyFilter
+        {
+            get => _myFilter;
+            set => Set(ref _myFilter, value);
+        }
+
         private ObservableCollection<Emails> _emailsList;
         public ObservableCollection<Emails> EmailsList
         {
