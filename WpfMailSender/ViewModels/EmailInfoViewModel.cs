@@ -81,7 +81,7 @@ namespace WpfMailSender.ViewModels
         public ObservableCollection<Emails> RecipientList { get; set; }
         #endregion
 
-        #region Выбранный адрес
+        #region Выбранный Email адрес
         private Emails _selectedEmail;
         public Emails SelectedEmail
         {
@@ -90,13 +90,23 @@ namespace WpfMailSender.ViewModels
         }
         #endregion
 
+        #region Выбранный получатель
+        private Emails _selectedRecipient;
+        public Emails SelectedRecipient
+        {
+            get => _selectedRecipient;
+            set => Set(ref _selectedRecipient, value);
+        }
+        #endregion
+
         public EmailInfoViewModel(IDataAccessService dataService)
         {
             _dataAccessService = dataService;
             RecipientList = new ObservableCollection<Emails>();
+            _emailsListCollections.Filter += OnEmailFiltered;
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
             GetRecipientCommand = new RelayCommand(OnGetRecipientCommandExecuted, CanGetRecipientCommandExecute);
-            _emailsListCollections.Filter += OnEmailFiltered;
+            RemoveRecipientCommand = new RelayCommand(OnRemoveRecipientCommandExecuted, CanRemoveRecipientCommandExecute);
         }
 
         /// <summary>
@@ -117,7 +127,7 @@ namespace WpfMailSender.ViewModels
         }
         private bool CanGetEmailsCommandExecute(object p)
         {
-            return true;
+            return EmailsList == null;
         }
 
         #endregion
@@ -128,12 +138,30 @@ namespace WpfMailSender.ViewModels
         private void OnGetRecipientCommandExecuted(object p)
         {
             RecipientList.Add(SelectedEmail);
+            EmailsList.Remove(SelectedEmail);
+            SelectedEmail = null;
         }
         private bool CanGetRecipientCommandExecute(object p)
         {
             return SelectedEmail != null;
         }
 
+        #endregion
+
+        #region Команда удаления адреса из списка получателей
+
+        public ICommand RemoveRecipientCommand { get; }
+        private void OnRemoveRecipientCommandExecuted(object p)
+        {
+            var tempEmail = SelectedRecipient;
+            RecipientList.Remove(tempEmail);
+            EmailsList.Add(tempEmail);
+            SelectedRecipient = null;
+        }
+        private bool CanRemoveRecipientCommandExecute(object p)
+        {
+            return SelectedRecipient != null;
+        }
         #endregion
     }
 }

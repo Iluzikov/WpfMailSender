@@ -10,11 +10,20 @@
              d:DataContext="{d:DesignInstance vm:EmailInfoViewModel}">
     <DockPanel>
         <DockPanel Width="300" DockPanel.Dock="Right">
-            <Button DockPanel.Dock="Left" Command="{Binding GetRecipientCommand}"
-                    Width="50" Content=">>" FontSize="30"/>
+            <Grid DockPanel.Dock="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Command="{Binding GetRecipientCommand}"
+                        Width="50" Content=">>" FontSize="30"/>
+                <Button Command="{Binding RemoveRecipientCommand}"
+                    Grid.Row="1" Content="-" FontSize="30"/>
+            </Grid>
             <GroupBox Header="Список получателей">
                 <DataGrid IsReadOnly="True" AutoGenerateColumns="False"
-                          ItemsSource="{Binding RecipientList}" >
+                          ItemsSource="{Binding RecipientList}"
+                          SelectedItem="{Binding SelectedRecipient}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Имя" Width="50*" Binding="{Binding Name}"/>
                     </DataGrid.Columns>
