@@ -39,26 +39,17 @@ namespace WpfMailSender.ViewModels
             get => _emailsFilterTextFlag;
             set => Set(ref _emailsFilterTextFlag, value);
         }
-        #endregion
-
-        private ObservableCollection<Emails> _emailsList;
-        public ObservableCollection<Emails> EmailsList
-        {
-            get => _emailsList;
-            set
-            {
-                if (!Set(ref _emailsList, value)) return;
-                _emailsListCollections.Source = value;
-                OnPropertyChanged(nameof(EmailsListCollection));
-            }
-        }
-
+        /// <summary>
+        /// Метод фильтрации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnEmailFiltered(object sender, FilterEventArgs e)
         {
             if (!(e.Item is Emails emails))
             {
                 e.Accepted = false;
-                return; 
+                return;
             }
 
             var filterText = _emailsFilterText;
@@ -70,11 +61,41 @@ namespace WpfMailSender.ViewModels
 
             e.Accepted = false;
         }
+        #endregion
+
+        #region Список всех адресатов из БД
+        private ObservableCollection<Emails> _emailsList;
+        public ObservableCollection<Emails> EmailsList
+        {
+            get => _emailsList;
+            set
+            {
+                if (!Set(ref _emailsList, value)) return;
+                _emailsListCollections.Source = value;
+                OnPropertyChanged(nameof(EmailsListCollection));
+            }
+        }
+        #endregion
+
+        #region Список получателей сообщения
+        public ObservableCollection<Emails> RecipientList { get; set; }
+        #endregion
+
+        #region Выбранный адрес
+        private Emails _selectedEmail;
+        public Emails SelectedEmail
+        {
+            get => _selectedEmail;
+            set => Set(ref _selectedEmail, value);
+        }
+        #endregion
 
         public EmailInfoViewModel(IDataAccessService dataService)
         {
             _dataAccessService = dataService;
+            RecipientList = new ObservableCollection<Emails>();
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
+            GetRecipientCommand = new RelayCommand(OnGetRecipientCommandExecuted, CanGetRecipientCommandExecute);
             _emailsListCollections.Filter += OnEmailFiltered;
         }
 
@@ -87,7 +108,7 @@ namespace WpfMailSender.ViewModels
             EmailsFilterTextFlag = true;
         }
 
-        #region Команды получения списка Email
+        #region Команда получения списка Email
 
         public ICommand GetEmailsCommand { get; }
         private void OnGetEmailsCommandExecuted(object p)
@@ -97,6 +118,20 @@ namespace WpfMailSender.ViewModels
         private bool CanGetEmailsCommandExecute(object p)
         {
             return true;
+        }
+
+        #endregion
+
+        #region Команда добавления адреса в список получателей
+
+        public ICommand GetRecipientCommand { get; }
+        private void OnGetRecipientCommandExecuted(object p)
+        {
+            RecipientList.Add(SelectedEmail);
+        }
+        private bool CanGetRecipientCommandExecute(object p)
+        {
+            return SelectedEmail != null;
         }
 
         #endregion

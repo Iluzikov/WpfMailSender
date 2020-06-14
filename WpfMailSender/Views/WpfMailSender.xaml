@@ -125,7 +125,7 @@
                 <StackPanel Width="180" HorizontalAlignment="Left">
                     <Calendar x:Name="cldSchedulDate"/>
                     <xctk:TimePicker x:Name="tPicker"/>
-                    <Button x:Name="btnSendLater"
+                    <Button x:Name="btnSendLater" IsEnabled="False"
                             Height="25" Margin="0,5,0,5" Click="btnSendLater_Click">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
