@@ -104,9 +104,13 @@ namespace WpfMailSender.ViewModels
             _dataAccessService = dataService;
             RecipientList = new ObservableCollection<Emails>();
             _emailsListCollections.Filter += OnEmailFiltered;
+
+            #region Комманды
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
             GetRecipientCommand = new RelayCommand(OnGetRecipientCommandExecuted, CanGetRecipientCommandExecute);
             RemoveRecipientCommand = new RelayCommand(OnRemoveRecipientCommandExecuted, CanRemoveRecipientCommandExecute);
+            ClearFilterCommand = new RelayCommand(OnClearFilterCommandExecuted, CanClearFilterCommandExecute);
+            #endregion
         }
 
         /// <summary>
@@ -161,6 +165,19 @@ namespace WpfMailSender.ViewModels
         private bool CanRemoveRecipientCommandExecute(object p)
         {
             return SelectedRecipient != null;
+        }
+        #endregion
+
+        #region Команда очистки поля фильтра
+
+        public ICommand ClearFilterCommand { get; }
+        private void OnClearFilterCommandExecuted(object p)
+        {
+            EmailsFilterText = null;
+        }
+        private bool CanClearFilterCommandExecute(object p)
+        {
+            return EmailsFilterText != null;
         }
         #endregion
     }

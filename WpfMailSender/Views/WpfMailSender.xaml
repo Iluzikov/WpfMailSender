@@ -9,7 +9,7 @@
         xmlns:view="clr-namespace:WpfMailSender.Views.UserControls"
         mc:Ignorable="d"
         DataContext="{Binding WpfMailSenderModel, Source={StaticResource Locator}}"
-        Title="Рассыльщик писем" Height="450" Width="800">
+        Title="Рассыльщик писем" Height="450" Width="800" MinWidth="800" MinHeight="450">
     <Window.Resources>
         <Style x:Key="squareBtn" TargetType="Button">
             <Setter Property="Height" Value="25" />

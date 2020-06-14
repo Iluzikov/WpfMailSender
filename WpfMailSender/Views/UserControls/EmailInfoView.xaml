@@ -41,10 +41,13 @@
                 <TextBox MinWidth="100" Height="25" Width="250" 
                          Text="{Binding EmailsFilterText, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding EmailsFilterTextFlag}"/>
-            </StackPanel>
+                    <Button Content="X" 
+                            Command="{Binding ClearFilterCommand}"
+                            Width="25" Margin="5,0,0,0"/>
+                </StackPanel>
         </StackPanel>
         <Button Content="Получить список Email"
-                DockPanel.Dock="Bottom"
+                DockPanel.Dock="Bottom" Height="30"
                 Command="{Binding GetEmailsCommand}"/>
 
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
