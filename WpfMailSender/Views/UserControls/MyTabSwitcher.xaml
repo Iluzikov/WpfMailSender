@@ -8,12 +8,11 @@
              d:DataContext="{d:DesignInstance vm:MyTabSwitcherViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300">
-
     <StackPanel Orientation="Horizontal">
         <Button x:Name="btnPrevious" Width="150" Command="{Binding PreviousCommand}">
             <StackPanel Orientation="Horizontal">
-                <Path Stroke="DarkBlue" StrokeThickness="2" Data="M10,2 L-10,10 L10,18"/>
-                <Path Stroke="DarkBlue" StrokeThickness="2" Data="M10,2 L-10,10 L10,18"/>
+                <Path Stroke="DarkGray" StrokeThickness="3" Data="M10,2 L-10,10 L10,18"/>
+                <Path Stroke="DarkGray" StrokeThickness="3" Data="M-18,10 L10,10"/>
                 <TextBlock Text="Предыдущая" VerticalAlignment="Center" Margin="2,0,0,0"/>
             </StackPanel>
         </Button>
@@ -21,8 +20,8 @@
                   Command="{Binding NextCommand}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Следующая" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                <Path Stroke="DarkBlue" StrokeThickness="2" Data="M-10,2 L10,10 L-10,18"/>
-                <Path Stroke="DarkBlue" StrokeThickness="2" Data="M-10,2 L10,10 L-10,18"/>
+                <Path Stroke="DarkGray" StrokeThickness="3" Data="M0,10 L25,10"/>
+                <Path Stroke="DarkGray" StrokeThickness="3" Data="M-15,2 L5,10 L-15,18"/>
             </StackPanel>
         </Button>
     </StackPanel>

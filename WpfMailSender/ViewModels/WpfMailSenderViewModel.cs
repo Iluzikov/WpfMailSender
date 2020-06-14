@@ -92,7 +92,7 @@ namespace WpfMailSender.ViewModels
 
         private bool CanSendAtOnceCommandExecut(object p)
         {
-            return SelectedSmtp != null;
+            return SelectedSmtp != null && EmailInfoVM.RecipientList.Count != 0;
         }
         private void OnSendAtOnceCommandExecuted(object p)
         {

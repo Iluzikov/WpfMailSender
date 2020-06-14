@@ -16,9 +16,19 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Button Command="{Binding GetRecipientCommand}"
-                        Width="50" Content=">>" FontSize="30"/>
+                        Width="50">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Stroke="DarkGray" StrokeThickness="5" Data="M0,0 L10,10 L0,20"/>
+                        <Path Stroke="DarkGray" StrokeThickness="5" Data="M0,0 L10,10 L0,20"/>
+                    </StackPanel>
+                </Button>
                 <Button Command="{Binding RemoveRecipientCommand}"
-                    Grid.Row="1" Content="-" FontSize="30"/>
+                        Grid.Row="1">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Stroke="DarkGray" StrokeThickness="5" Data="M10,0 L0,10 L10,20"/>
+                        <Path Stroke="DarkGray" StrokeThickness="5" Data="M10,0 L0,10 L10,20"/>
+                    </StackPanel>
+                </Button>
             </Grid>
             <GroupBox Header="Список получателей">
                 <DataGrid IsReadOnly="True" AutoGenerateColumns="False"
@@ -41,9 +51,13 @@
                 <TextBox MinWidth="100" Height="25" Width="250" 
                          Text="{Binding EmailsFilterText, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding EmailsFilterTextFlag}"/>
-                    <Button Content="X" 
-                            Command="{Binding ClearFilterCommand}"
-                            Width="25" Margin="5,0,0,0"/>
+                    <Button Command="{Binding ClearFilterCommand}"
+                            Width="25" Margin="5,0,0,0">
+                        <Grid>
+                            <Path Stroke="DarkGray" StrokeThickness="3" Data="M0,0 L15,15"/>
+                            <Path Stroke="DarkGray" StrokeThickness="3" Data="M0,15 L15,0"/>
+                        </Grid>
+                    </Button>
                 </StackPanel>
         </StackPanel>
         <Button Content="Получить список Email"
