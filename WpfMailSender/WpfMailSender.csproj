@@ -257,6 +257,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\SaveEmailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WpfMailSender.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -271,6 +275,9 @@
     <Compile Include="Models\SmtpSettings.cs" />
     <Compile Include="Views\UserControls\MyTabSwitcher.xaml.cs">
       <DependentUpon>MyTabSwitcher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\SaveEmailView.xaml.cs">
+      <DependentUpon>SaveEmailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WpfMailSender.xaml.cs">
       <DependentUpon>WpfMailSender.xaml</DependentUpon>

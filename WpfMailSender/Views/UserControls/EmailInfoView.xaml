@@ -41,14 +41,13 @@
             </GroupBox>
             
         </DockPanel>
-        <DockPanel>
-            
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Top" Margin="5">
-            <Label FontWeight="Bold" Content="Список E-mail адресов" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                <Label Content="Поиск по имени" VerticalAlignment="Center"
+        
+        <GroupBox DockPanel.Dock="Top" Header="Список E-mail адресов">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,5,0,0">
+                    <Label Content="Поиск по имени" VerticalAlignment="Center"
                        Margin="0,0,10,0"/>
-                <TextBox MinWidth="100" Height="25" Width="250" 
+                    <TextBox MinWidth="100" Height="25" Width="250" 
                          Text="{Binding EmailsFilterText, UpdateSourceTrigger=PropertyChanged}"
                          IsEnabled="{Binding EmailsFilterTextFlag}"/>
                     <Button Command="{Binding ClearFilterCommand}"
@@ -59,22 +58,21 @@
                         </Grid>
                     </Button>
                 </StackPanel>
-        </StackPanel>
-        <Button Content="Получить список Email"
-                DockPanel.Dock="Bottom" Height="30"
-                Command="{Binding GetEmailsCommand}"/>
+                <Button Content="Получить список Email"
+                    DockPanel.Dock="Bottom" Height="30"
+                    Command="{Binding GetEmailsCommand}"/>
 
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
-                      ItemsSource="{Binding EmailsListCollection}"
-                      SelectedItem="{Binding SelectedEmail}"
-                      AlternatingRowBackground="AliceBlue">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="#" Width="10*" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Имя" Width="50*" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Email адрес" Width="100*" Binding="{Binding Email}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        </DockPanel>
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
+                          ItemsSource="{Binding EmailsListCollection}"
+                          SelectedItem="{Binding SelectedEmail}"
+                          AlternatingRowBackground="AliceBlue">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="#" Width="6*" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Имя" Width="80*" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Email адрес" Width="100*" Binding="{Binding Email}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
     </DockPanel>
 </UserControl>
