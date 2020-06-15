@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="200">
     <GroupBox Header="Новый E-mail адрес:">
-        <Grid Margin="5,20,5,0">
+        <Grid Margin="5,20,5,0" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -19,12 +19,22 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="Имя:"/>
-            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="E-mail:" Margin="0,5,5,0"/>
+            <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Center"/>
+            <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="E-mail:" Margin="0,0,5,0" VerticalAlignment="Center"/>
 
-            <TextBox Grid.Column="1" TextWrapping="Wrap" Text="" Width="140"/>
-            <TextBox Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="" Width="140"/>
-            <Button Content="Сохранить" Grid.ColumnSpan="2" Grid.Row="4" Height="22" Width="140"/>
+            <TextBox Grid.Column="1" 
+                     TextWrapping="Wrap"
+                     Text="{Binding NewEmail.Name}" 
+                     Width="130"/>
+            <TextBox Grid.Column="1"
+                     Grid.Row="1"
+                     TextWrapping="Wrap"
+                     Text="{Binding NewEmail.Name}"
+                     Width="130"/>
+            <Button Content="Сохранить"
+                    Command="{Binding SaveEmailCommand}"
+                    Grid.ColumnSpan="2" Grid.Row="4"
+                    Height="22" Width="140"/>
         </Grid>
     </GroupBox>
 </UserControl>

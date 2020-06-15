@@ -118,7 +118,9 @@
                         </ToolBar>
                     </ToolBarTray>
 
-                    <Expander Header="Добавить E-mail " ExpandDirection="Right">
+                    <Expander Header="Добавить E-mail "
+                              DataContext="{Binding SaveEmailViewModel}"
+                              ExpandDirection="Right">
                         <view:SaveEmailView />
                     </Expander>
                     

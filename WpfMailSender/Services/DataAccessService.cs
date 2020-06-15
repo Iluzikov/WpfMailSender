@@ -6,6 +6,7 @@ namespace WpfMailSender.Services
     public interface IDataAccessService
     {
         ObservableCollection<Emails> GetEmails();
+        int CreateEmail(Emails email);
     }
     public class DataAccessService : IDataAccessService
     {
@@ -32,6 +33,13 @@ namespace WpfMailSender.Services
                 SmtpList.Add(item);
             }
             return SmtpList;
+        }
+    
+        public int CreateEmail(Emails email)
+        {
+            _context.Emails.InsertOnSubmit(email);
+            _context.SubmitChanges();
+            return email.Id;
         }
     }
 }

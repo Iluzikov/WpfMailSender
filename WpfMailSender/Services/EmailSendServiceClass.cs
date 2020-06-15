@@ -52,6 +52,7 @@ namespace WpfMailSender.Services
             {
                 SendMail(email.Email);
             }
+            MessageBox.Show("Сообщение отправлено");
         }
 
     }

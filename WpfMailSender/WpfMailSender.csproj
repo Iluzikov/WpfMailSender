@@ -221,6 +221,7 @@
     <Compile Include="Services\DataAccessService.cs" />
     <Compile Include="ViewModels\EmailInfoViewModel.cs" />
     <Compile Include="ViewModels\MyTabSwitcherViewModel.cs" />
+    <Compile Include="ViewModels\SaveEmailViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
