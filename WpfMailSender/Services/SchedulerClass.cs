@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -17,6 +18,18 @@ namespace WpfMailSender.Services
         EmailSendServiceClass _emailSenderService;
         DateTime _dtSend;
         ObservableCollection<Emails> _emails;
+
+        Dictionary<DateTime, string> _dicDates = new Dictionary<DateTime, string>();
+        public Dictionary<DateTime, string> DatesEmailTexts
+        {
+            get => _dicDates;
+            set
+            {
+                _dicDates = value;
+                _dicDates = _dicDates.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
+            }
+        }
+
 
         /// <summary>
         /// Конверирует строку из DateTimePicker в TimeSpan
@@ -52,12 +65,24 @@ namespace WpfMailSender.Services
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (_dtSend.ToShortTimeString() == DateTime.Now.ToShortTimeString())
+            // метод изменен по методичке урок 4
+            if(_dicDates.Count == 0)
             {
-                _emailSenderService.SendMails(_emails);
                 _timer.Stop();
                 MessageBox.Show("Письма отправлены");
             }
+            else if( _dicDates.Keys.First<DateTime>().ToShortTimeString() == DateTime.Now.ToShortTimeString())
+            {
+                _emailSenderService.SendMails(_emails);
+                _dicDates.Remove(_dicDates.Keys.First<DateTime>());
+            }
+
+            //if (_dtSend.ToShortTimeString() == DateTime.Now.ToShortTimeString())
+            //{
+            //    _emailSenderService.SendMails(_emails);
+            //    _timer.Stop();
+            //    MessageBox.Show("Письма отправлены");
+            //}
         }
 
 
