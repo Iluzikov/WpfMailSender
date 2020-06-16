@@ -18,6 +18,7 @@ namespace WpfMailSender.ViewModels
     {
         #region Модели-представлений
         public EmailInfoViewModel EmailInfoVM { get; }
+        public SaveEmailViewModel SaveEmailVM { get; }
         public MyTabSwitcherViewModel MyTabSwitcherVM { get; }
         public MailSettings mailSettings { get; set; } = new MailSettings();
         #endregion
@@ -61,9 +62,13 @@ namespace WpfMailSender.ViewModels
         }
         #endregion
 
-        public WpfMailSenderViewModel(EmailInfoViewModel emailInfoModel, MyTabSwitcherViewModel myTabSwitcherViewModel)
+        public WpfMailSenderViewModel(
+            EmailInfoViewModel emailInfoModel, 
+            MyTabSwitcherViewModel myTabSwitcherViewModel,
+            SaveEmailViewModel saveEmailViewModel)
         {
             EmailInfoVM = emailInfoModel;
+            SaveEmailVM = saveEmailViewModel;
             emailInfoModel.MainVM = this;
             MyTabSwitcherVM = myTabSwitcherViewModel;
             myTabSwitcherViewModel.MainVM = this;
@@ -105,7 +110,7 @@ namespace WpfMailSender.ViewModels
         /// <summary>
         /// получить список SMTP серверов
         /// </summary>
-        private void GetSmtp()
+        public void GetSmtp()
         {
             SmtpList = _dataService.GetSmtp();
         }
@@ -145,7 +150,7 @@ namespace WpfMailSender.ViewModels
             DateTime dtSendDateTime = selectedSendDate.Add(tsSendTime);
             if (dtSendDateTime < DateTime.Now)
             {
-                MessageBox.Show("Дата и время отправи не могут быть раньше настоящего времени", "ВНИМАНИЕ!");
+                MessageBox.Show("Дата и время отправления не могут быть раньше настоящего времени", "ВНИМАНИЕ!");
                 return;
             }
             if (authWindow.ShowDialog() == true)

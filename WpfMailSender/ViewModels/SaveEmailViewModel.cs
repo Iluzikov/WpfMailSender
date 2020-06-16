@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using WpfMailSender.Commands;
 using WpfMailSender.Data;
@@ -9,11 +10,25 @@ namespace WpfMailSender.ViewModels
 {
     class SaveEmailViewModel : ViewModelBase
     {
-        private Emails _newEmail;
-        public Emails NewEmail
+        private string _emailName;
+        public string EmailName
         {
-            get => _newEmail;
-            set => Set(ref _newEmail, value);
+            get => _emailName;
+            set => Set(ref _emailName, value);
+        }
+        private string _emailAddress;
+        public string EmailAddress
+        {
+            get => _emailAddress;
+            set => Set(ref _emailAddress, value);
+        }
+
+        ViewModelLocator locator = new ViewModelLocator();
+        Emails _emailInfo;
+        public Emails EmailInfo
+        {
+            get => _emailInfo;
+            set => Set(ref _emailInfo, value);
         }
 
         private readonly IDataAccessService _dataAccessService;
@@ -21,13 +36,19 @@ namespace WpfMailSender.ViewModels
         public SaveEmailViewModel(IDataAccessService dataAccessService)
         {
             _dataAccessService = dataAccessService;
+            EmailInfo = new Emails();
             SaveEmailCommand = new RelayCommand(OnSaveEmailCommandExecuted, CanSaveEmailCommandExecut);
         }
 
         void SaveEmail()
         {
-            int SaveResult = _dataAccessService.CreateEmail(NewEmail);
-            if (SaveResult > 0) MessageBox.Show($"Email добавлен");
+            int SaveResult = _dataAccessService.CreateEmail(EmailInfo);
+
+            if (SaveResult != 0)
+            {
+                MessageBox.Show($"Email добавлен");
+            }
+            else MessageBox.Show($"Ошибка добавления Email");
         }
 
         #region Добавить Email

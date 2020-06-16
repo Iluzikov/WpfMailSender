@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using WpfMailSender.Data;
 
 namespace WpfMailSender.Services
@@ -7,6 +8,7 @@ namespace WpfMailSender.Services
     {
         ObservableCollection<Emails> GetEmails();
         int CreateEmail(Emails email);
+        int CreateSmtp(Smtp smtp);
     }
     public class DataAccessService : IDataAccessService
     {
@@ -37,9 +39,17 @@ namespace WpfMailSender.Services
     
         public int CreateEmail(Emails email)
         {
+            if (_context.Emails.Contains(email)) return email.Id;
             _context.Emails.InsertOnSubmit(email);
             _context.SubmitChanges();
             return email.Id;
+        }
+        public int CreateSmtp(Smtp smtp)
+        {
+            if (_context.Smtp.Contains(smtp)) return smtp.Id;
+            _context.Smtp.InsertOnSubmit(smtp);
+            _context.SubmitChanges();
+            return smtp.Id;
         }
     }
 }

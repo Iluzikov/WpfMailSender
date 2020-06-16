@@ -24,12 +24,12 @@
 
             <TextBox Grid.Column="1" 
                      TextWrapping="Wrap"
-                     Text="{Binding NewEmail.Name}" 
+                     Text="{Binding EmailInfo.Name, UpdateSourceTrigger=PropertyChanged}" 
                      Width="130"/>
             <TextBox Grid.Column="1"
                      Grid.Row="1"
                      TextWrapping="Wrap"
-                     Text="{Binding NewEmail.Name}"
+                     Text="{Binding EmailInfo.Email, UpdateSourceTrigger=PropertyChanged}"
                      Width="130"/>
             <Button Content="Сохранить"
                     Command="{Binding SaveEmailCommand}"
