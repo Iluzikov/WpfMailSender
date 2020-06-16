@@ -19,5 +19,15 @@ namespace CodePasswordDll.Test
             // assert
             Assert.AreEqual(strExpected, strActual);
         }
+
+        [TestMethod]
+        public void GetPassword_bcd_abc()
+        {
+            string strIn = "bcd";
+            string strExpected = "abc";
+            string strActual = CodePassword.GetPassword(strIn);
+            Assert.AreEqual(strExpected, strActual);
+        }
+
     }
 }
