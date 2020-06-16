@@ -11,7 +11,7 @@ namespace WpfMailSender.Services
     /// Класс планировщик, создает рассписание и следит за его выполнением
     /// Автоматизирует рассылку писем в соответствии с расписанием
     /// </summary>
-    class SchedulerClass
+    public class SchedulerClass
     {
         DispatcherTimer _timer = new DispatcherTimer();
         EmailSendServiceClass _emailSenderService;
