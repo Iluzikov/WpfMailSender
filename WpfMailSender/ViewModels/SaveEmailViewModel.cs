@@ -10,20 +10,21 @@ namespace WpfMailSender.ViewModels
 {
     class SaveEmailViewModel : ViewModelBase
     {
-        private string _emailName;
-        public string EmailName
-        {
-            get => _emailName;
-            set => Set(ref _emailName, value);
-        }
-        private string _emailAddress;
-        public string EmailAddress
-        {
-            get => _emailAddress;
-            set => Set(ref _emailAddress, value);
-        }
+        //private string _emailName;
+        //public string EmailName
+        //{
+        //    get => _emailName;
+        //    set => Set(ref _emailName, value);
+        //}
+        //private string _emailAddress;
+        //public string EmailAddress
+        //{
+        //    get => _emailAddress;
+        //    set => Set(ref _emailAddress, value);
+        //}
 
         ViewModelLocator locator = new ViewModelLocator();
+
         Emails _emailInfo;
         public Emails EmailInfo
         {
