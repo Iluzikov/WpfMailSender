@@ -31,13 +31,19 @@
                 </Button>
             </Grid>
             <GroupBox Header="Список получателей">
-                <DataGrid IsReadOnly="True" AutoGenerateColumns="False"
-                          ItemsSource="{Binding RecipientList}"
-                          SelectedItem="{Binding SelectedRecipient}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Имя" Width="50*" Binding="{Binding Name}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <DockPanel>
+                    <Button Content="Очистить"
+                            DockPanel.Dock="Bottom"
+                            Command="{Binding ClearRecipientCommand}"
+                            Height="30"/>
+                    <DataGrid IsReadOnly="True" AutoGenerateColumns="False"
+                              ItemsSource="{Binding RecipientList}"
+                              SelectedItem="{Binding SelectedRecipient}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Имя" Width="50*" Binding="{Binding Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
             </GroupBox>
             
         </DockPanel>

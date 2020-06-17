@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using WpfMailSender.Commands;
@@ -24,9 +21,9 @@ namespace WpfMailSender.ViewModels
         public string EmailsFilterText
         {
             get => _emailsFilterText;
-            set 
+            set
             {
-                if(!Set(ref _emailsFilterText, value)) return;
+                if (!Set(ref _emailsFilterText, value)) return;
                 _emailsListCollections.View.Refresh();
             }
         }
@@ -34,7 +31,7 @@ namespace WpfMailSender.ViewModels
         public ICollectionView EmailsListCollection => _emailsListCollections?.View;
 
         private bool _emailsFilterTextFlag = false;
-        public bool EmailsFilterTextFlag 
+        public bool EmailsFilterTextFlag
         {
             get => _emailsFilterTextFlag;
             set => Set(ref _emailsFilterTextFlag, value);
@@ -109,6 +106,7 @@ namespace WpfMailSender.ViewModels
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
             GetRecipientCommand = new RelayCommand(OnGetRecipientCommandExecuted, CanGetRecipientCommandExecute);
             RemoveRecipientCommand = new RelayCommand(OnRemoveRecipientCommandExecuted, CanRemoveRecipientCommandExecute);
+            ClearRecipientCommand = new RelayCommand(OnClearRecipientCommandExecuted, CanClearRecipientCommandExecute);
             ClearFilterCommand = new RelayCommand(OnClearFilterCommandExecuted, CanClearFilterCommandExecute);
             #endregion
         }
@@ -165,6 +163,24 @@ namespace WpfMailSender.ViewModels
         private bool CanRemoveRecipientCommandExecute(object p)
         {
             return SelectedRecipient != null;
+        }
+        #endregion
+
+        #region Команда очистки списка получателей
+
+        public ICommand ClearRecipientCommand { get; }
+        private void OnClearRecipientCommandExecuted(object p)
+        {
+            foreach (var item in RecipientList)
+            {
+                EmailsList.Add(item);
+            }
+            RecipientList.Clear();
+            SelectedRecipient = null;
+        }
+        private bool CanClearRecipientCommandExecute(object p)
+        {
+            return RecipientList.Count != 0;
         }
         #endregion
 

@@ -24,5 +24,21 @@ namespace WpfMailSender.Views.UserControls
         {
             InitializeComponent();
         }
+
+        private void tbEmail_Error(object sender, ValidationErrorEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case ValidationErrorEventAction.Added:
+                    ((Control)sender).ToolTip = e.Error.ErrorContent.ToString();
+                    btnSave.IsEnabled = false;
+                    break;
+
+                case ValidationErrorEventAction.Removed:
+                    ((Control)sender).ToolTip = null;
+                    btnSave.IsEnabled = true;
+                    break;
+            }
+        }
     }
 }

@@ -31,6 +31,8 @@
             
             <TextBox Grid.Column="1" Grid.Row="1"
                      TextWrapping="Wrap"
+                     Name="tbEmail"
+                     Validation.Error="tbEmail_Error"
                      Width="130">
                 <TextBox.Text>
                     <Binding Path="EmailInfo.Email"
