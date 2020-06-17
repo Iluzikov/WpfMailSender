@@ -1,32 +1,47 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CodePasswordDLL;
+using System.Diagnostics;
+
 namespace CodePasswordDll.Test
 {
     [TestClass]
     public class CodePasswordTest
     {
-        [TestMethod]
-        public void GetCodePassword_abc_bcd()
+        string str_abc;
+        string str_bcd;
+
+        [TestInitialize]
+        public void TestInitialize()
         {
-            // arrange
-            string strIn = "abc";
-            string strExpected = "bcd";
+            Debug.WriteLine($"Test Initialize {DateTime.Now}");
+            str_abc = "abc";
+            str_bcd = "bcd";
+        }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            Debug.WriteLine($"Test Cleanup {DateTime.Now}");
+        }
+
+        [TestMethod]
+        public void GetEncryptPassword_abc_bcd()
+        {
             // act
-            string strActual = CodePassword.EncryptPassword(strIn);
-
+            string strActual = CodePassword.EncryptPassword(str_abc);
             // assert
-            Assert.AreEqual(strExpected, strActual);
+            Assert.AreEqual(str_bcd, strActual);
+
+            Debug.WriteLine($"Первый тест пройден {DateTime.Now}");
         }
 
         [TestMethod]
         public void GetPassword_bcd_abc()
         {
-            string strIn = "bcd";
-            string strExpected = "abc";
-            string strActual = CodePassword.GetPassword(strIn);
-            Assert.AreEqual(strExpected, strActual);
+            string strActual = CodePassword.GetPassword(str_bcd);
+            Assert.AreEqual(str_abc, strActual);
+            Debug.WriteLine($"Второй тест пройден {DateTime.Now}");
         }
 
     }

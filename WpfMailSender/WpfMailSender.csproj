@@ -216,6 +216,9 @@
     </ApplicationDefinition>
     <Compile Include="Commands\Base\CommandBase.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Data\DataBase.cs">
+      <DependentUpon>DataBase.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Services\DataAccessService.cs" />
