@@ -15,7 +15,12 @@
             <Setter Property="Height" Value="25" />
             <Setter Property="Width" Value="25" />
         </Style>
-        
+        <Style TargetType="ListViewItem">
+            <Setter Property="Background" Value="WhiteSmoke" />
+        </Style>
+        <Style x:Key="listViewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="WhiteSmoke" />
+        </Style>
     </Window.Resources>
     
     <DockPanel>
@@ -129,33 +134,53 @@
             </TabItem>
 
             <TabItem Header="Планировщик" x:Name="tabItemPlanner">
-                <StackPanel Width="180" HorizontalAlignment="Left">
-                    <Calendar x:Name="cldSchedulDate"/>
-                    <xctk:TimePicker x:Name="tPicker"/>
+                <DockPanel Width="180" HorizontalAlignment="Left">
+                    <!--<Calendar x:Name="cldSchedulDate" DockPanel.Dock="Top"/>-->
+
                     <Button x:Name="btnSendLater" IsEnabled="False"
-                            Height="25" Margin="0,5,0,5" Click="btnSendLater_Click">
+                            Height="25" Margin="0,5,0,5" Click="btnSendLater_Click" DockPanel.Dock="Top">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Resources/Img/sendlater.png"
-                                       HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 <TextBlock Text="Запланировать отправку" 
-                                           VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                            VerticalAlignment="Center" Margin="5,0,0,0"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
                     <Button x:Name="btnSendAtOnce" Height="25"
-                            Command="{Binding SendAtOnceCommand}">
+                            Command="{Binding SendAtOnceCommand}" DockPanel.Dock="Top">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/Resources/Img/sendnow.png" 
-                                       HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        HorizontalAlignment="Left" VerticalAlignment="Center" />
                                 <TextBlock Text="Отправить сейчас"
-                                           HorizontalAlignment="Left" VerticalAlignment="Center"
-                                           Margin="5,0,0,0"/>
+                                            HorizontalAlignment="Left" VerticalAlignment="Center"
+                                            Margin="5,0,0,0"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                </StackPanel>
+
+                    <ListView x:Name="lvShedulerListItem" Style="{StaticResource listViewStyle}" DockPanel.Dock="Bottom" Margin="0,5,0,0">
+                        <ListViewItem >
+                            <Button x:Name="btnAddMessageTime" Height="25" Width="168" Click="btnAddMessageTime_Click">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Resources/Img/add_icon.png" 
+                                                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        <TextBlock Text="Добавить письмо"
+                                                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                       Margin="5,0,0,0"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </ListViewItem >
+                        <ListViewItem>
+                            <view:ListViewItemScheduler/>
+                            
+                        </ListViewItem>
+                    </ListView>
+                </DockPanel>
             </TabItem>
 
             <TabItem Header="Редактор писем" x:Name="tabItemTextMailEditor">

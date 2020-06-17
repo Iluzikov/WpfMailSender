@@ -258,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\ListViewItemScheduler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\MyTabSwitcher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -278,6 +282,9 @@
     <Compile Include="Services\EmailSendServiceClass.cs" />
     <Compile Include="Models\MailSettings.cs" />
     <Compile Include="Models\SmtpSettings.cs" />
+    <Compile Include="Views\UserControls\ListViewItemScheduler.xaml.cs">
+      <DependentUpon>ListViewItemScheduler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MyTabSwitcher.xaml.cs">
       <DependentUpon>MyTabSwitcher.xaml</DependentUpon>
     </Compile>

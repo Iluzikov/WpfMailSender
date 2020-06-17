@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using WpfMailSender.Data;
 using WpfMailSender.ViewModels;
+using WpfMailSender.Views.UserControls;
 
 namespace WpfMailSender.Views
 {
@@ -34,5 +35,9 @@ namespace WpfMailSender.Views
 
         }
 
+        private void btnAddMessageTime_Click(object sender, RoutedEventArgs e)
+        {
+            lvShedulerListItem.Items.Add(new ListViewItemScheduler());
+        }
     }
 }
