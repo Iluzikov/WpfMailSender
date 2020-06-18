@@ -6,22 +6,22 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:local="clr-namespace:WpfMailSender.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="25">
+             d:DesignHeight="25" Width="165">
     <DockPanel>
-        <Button x:Name="btnMessageEdit" Width="25">
+        <Button x:Name="btnMessageEdit" Width="25" Click="btnMessageEdit_Click">
             <Button.Content>
                 <Image Source="/Resources/Img/edit_icon.png" />
             </Button.Content>
         </Button>
         <Button x:Name="btnControlDelete" Width="25"
                 HorizontalAlignment="Right"
-                DockPanel.Dock="Right">
+                DockPanel.Dock="Right" Click="btnControlDelete_Click">
             <Button.Content>
                 <Image Source="/Resources/Img/delete_icon.png" />
             </Button.Content>
         </Button>
         
-        <xctk:DateTimePicker DockPanel.Dock="Right"/>
+        <xctk:DateTimePicker Name="dtpDateTime" DockPanel.Dock="Right"/>
         
     </DockPanel>
 </UserControl>

@@ -238,6 +238,9 @@
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
     <Compile Include="Services\SchedulerClass.cs" />
+    <Compile Include="Views\MessageTextWindow.xaml.cs">
+      <DependentUpon>MessageTextWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\EmailInfoView.xaml.cs">
       <DependentUpon>EmailInfoView.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\WpfMailSenderViewModel.cs" />
     <Page Include="Views\AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageTextWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

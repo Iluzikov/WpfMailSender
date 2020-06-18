@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfMailSender.Models;
 
 namespace WpfMailSender.Views.UserControls
 {
@@ -20,9 +10,28 @@ namespace WpfMailSender.Views.UserControls
     /// </summary>
     public partial class ListViewItemScheduler : UserControl
     {
+        MessageTextWindow textWindow;
+        public MailSettings MailSet { get; set; }
         public ListViewItemScheduler()
         {
             InitializeComponent();
+            MailSet = new MailSettings();
+        }
+
+        private void btnControlDelete_Click(object sender, RoutedEventArgs e)
+        {
+            ((ListView)this.Parent).Items.Remove(this);
+        }
+
+        private void btnMessageEdit_Click(object sender, RoutedEventArgs e)
+        {
+            textWindow = new MessageTextWindow(MailSet.EmailSubject, MailSet.EmailText);
+            if (textWindow.ShowDialog() == true)
+            {
+                MailSet.EmailSubject = textWindow.tbSubject.Text;
+                MailSet.EmailText = textWindow.tbText.Text;
+                MailSet.EmailDateTime = dtpDateTime.Value ?? DateTime.Now;
+            }
         }
     }
 }

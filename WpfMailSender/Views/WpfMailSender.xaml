@@ -161,9 +161,11 @@
                         </Button.Content>
                     </Button>
 
-                    <ListView x:Name="lvShedulerListItem" Style="{StaticResource listViewStyle}" DockPanel.Dock="Bottom" Margin="0,5,0,0">
+                    <ListView x:Name="lvShedulerListItem"
+                              Style="{StaticResource listViewStyle}"
+                              DockPanel.Dock="Bottom" Margin="0,5,0,0">
                         <ListViewItem >
-                            <Button x:Name="btnAddMessageTime" Height="25" Width="168" Click="btnAddMessageTime_Click">
+                            <Button x:Name="btnAddMessageTime" Height="25" Width="165" Click="btnAddMessageTime_Click" HorizontalAlignment="Left">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/Resources/Img/add_icon.png" 
@@ -176,8 +178,7 @@
                             </Button>
                         </ListViewItem >
                         <ListViewItem>
-                            <view:ListViewItemScheduler/>
-                            
+
                         </ListViewItem>
                     </ListView>
                 </DockPanel>

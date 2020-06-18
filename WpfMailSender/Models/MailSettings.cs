@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WpfMailSender.Models
@@ -7,7 +8,7 @@ namespace WpfMailSender.Models
     {
         private string _emailSubject;
         private string _emailText;
-
+        private DateTime _emailDateTime;
        
         public string EmailSubject
         {
@@ -27,6 +28,17 @@ namespace WpfMailSender.Models
                 if (value == _emailText) return;
                 _emailText = value;
                 OnPropertyChanged(nameof(_emailText));
+            }
+        }
+
+        public DateTime EmailDateTime
+        {
+            get => _emailDateTime;
+            set
+            {
+                if (value == _emailDateTime) return;
+                _emailDateTime = value;
+                OnPropertyChanged(nameof(_emailDateTime));
             }
         }
 
