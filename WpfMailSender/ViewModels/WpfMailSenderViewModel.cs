@@ -10,6 +10,7 @@ using WpfMailSender.Data;
 using WpfMailSender.Models;
 using WpfMailSender.Services;
 using WpfMailSender.ViewModels.Base;
+using WpfMailSender.Views.UserControls;
 
 namespace WpfMailSender.ViewModels
 {
@@ -22,7 +23,7 @@ namespace WpfMailSender.ViewModels
         public MyTabSwitcherViewModel MyTabSwitcherVM { get; }
         public MailSettings mailSettings { get; set; } = new MailSettings();
         #endregion
-        
+
         EmailSendServiceClass _sendService;
         SchedulerClass _scheduler;
         readonly DataAccessService _dataService = new DataAccessService();
@@ -63,9 +64,9 @@ namespace WpfMailSender.ViewModels
         #endregion
 
         public WpfMailSenderViewModel(
-            EmailInfoViewModel emailInfoModel, 
-            MyTabSwitcherViewModel myTabSwitcherViewModel,
-            SaveEmailViewModel saveEmailViewModel)
+               EmailInfoViewModel emailInfoModel, 
+               MyTabSwitcherViewModel myTabSwitcherViewModel,
+               SaveEmailViewModel saveEmailViewModel)
         {
             EmailInfoVM = emailInfoModel;
             SaveEmailVM = saveEmailViewModel;
@@ -73,7 +74,7 @@ namespace WpfMailSender.ViewModels
             MyTabSwitcherVM = myTabSwitcherViewModel;
             myTabSwitcherViewModel.MainVM = this;
             GetSmtp();
-
+            
             #region Команды
             CloseApplicationCommand = new RelayCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecut);
             SendAtOnceCommand = new RelayCommand(OnSendAtOnceCommandExecuted, CanSendAtOnceCommandExecut);
@@ -120,7 +121,11 @@ namespace WpfMailSender.ViewModels
         /// </summary>
         public void SendMessage()
         {
-            if (IsFillError()) return;
+            if (IsFillError())
+            {
+                SelectedTab = 2;
+                return;
+            }
             AuthorizationWindow authWindow = new AuthorizationWindow();
             if (authWindow.ShowDialog() == true)
             {
@@ -136,18 +141,17 @@ namespace WpfMailSender.ViewModels
         /// <param name="selectedSmtp"></param>
         /// <param name="selectedSendDate"></param>
         /// <param name="selectedSendTime"></param>
-        public void SendMessageLater(ObservableCollection<Emails> emails, Smtp selectedSmtp, DateTime selectedSendDate, string selectedSendTime)
+        public void SendMessageLater(MailSettings mailSettings)
         {
-            if (IsFillError()) return;
             AuthorizationWindow authWindow = new AuthorizationWindow();
             _scheduler = new SchedulerClass();
-            TimeSpan tsSendTime = _scheduler.GetSendTime(selectedSendTime);
+            TimeSpan tsSendTime = _scheduler.GetSendTime(mailSettings.EmailDateTime.ToShortTimeString());
             if (tsSendTime == new TimeSpan())
             {
                 MessageBox.Show("Некорректный формат даты", "ВНИМАНИЕ!");
                 return;
             }
-            DateTime dtSendDateTime = selectedSendDate.Add(tsSendTime);
+            DateTime dtSendDateTime = mailSettings.EmailDateTime.Date.Add(tsSendTime);
             if (dtSendDateTime < DateTime.Now)
             {
                 MessageBox.Show("Дата и время отправления не могут быть раньше настоящего времени", "ВНИМАНИЕ!");
@@ -155,8 +159,8 @@ namespace WpfMailSender.ViewModels
             }
             if (authWindow.ShowDialog() == true)
             {
-                _sendService = new EmailSendServiceClass(selectedSmtp, authWindow.authSettings, mailSettings);
-                _sendService.SendMails(emails);
+                _sendService = new EmailSendServiceClass(SelectedSmtp, authWindow.authSettings, mailSettings);
+                _sendService.SendMails(EmailInfoVM.RecipientList);
             }
         }
         

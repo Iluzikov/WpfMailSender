@@ -12,6 +12,7 @@ namespace WpfMailSender.Views
     /// </summary>
     public partial class MainWindow : Window
     {
+        ViewModelLocator Locator = new ViewModelLocator();
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +33,15 @@ namespace WpfMailSender.Views
         {
             //var selectedDate = cldSchedulDate.SelectedDate ?? DateTime.Today;
             //model.SendMessageLater((IQueryable<Emails>)dgEmails.ItemsSource, (Smtp)cbSmtp.SelectedItem, selectedDate, tPicker.Text);
-
+            if(lvShedulerListItem.Items.Count > 0)
+            {
+                foreach (var item in lvShedulerListItem.Items)
+                {
+                    if (item is ListViewItemScheduler mess)
+                        Locator.WpfMailSenderModel.SendMessageLater(mess.MailSet);
+                }
+            }    
+            else MessageBox.Show("List is null");
         }
 
         private void btnAddMessageTime_Click(object sender, RoutedEventArgs e)

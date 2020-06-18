@@ -137,7 +137,7 @@
                 <DockPanel Width="180" HorizontalAlignment="Left">
                     <!--<Calendar x:Name="cldSchedulDate" DockPanel.Dock="Top"/>-->
 
-                    <Button x:Name="btnSendLater" IsEnabled="False"
+                    <Button x:Name="btnSendLater" IsEnabled="True"
                             Height="25" Margin="0,5,0,5" Click="btnSendLater_Click" DockPanel.Dock="Top">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
@@ -161,25 +161,27 @@
                         </Button.Content>
                     </Button>
 
+                    <Button x:Name="btnAddMessageTime"
+                            Height="25" Margin="0,5,0,0"
+                            Click="btnAddMessageTime_Click"
+                            DockPanel.Dock="Top">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Resources/Img/add_icon.png" 
+                                                HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <TextBlock Text="Добавить письмо"
+                                                    HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                    Margin="5,0,0,0"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+
                     <ListView x:Name="lvShedulerListItem"
                               Style="{StaticResource listViewStyle}"
                               DockPanel.Dock="Bottom" Margin="0,5,0,0">
-                        <ListViewItem >
-                            <Button x:Name="btnAddMessageTime" Height="25" Width="165" Click="btnAddMessageTime_Click" HorizontalAlignment="Left">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/Resources/Img/add_icon.png" 
-                                                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-                                        <TextBlock Text="Добавить письмо"
-                                                       HorizontalAlignment="Left" VerticalAlignment="Center"
-                                                       Margin="5,0,0,0"/>
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                        </ListViewItem >
                         <ListViewItem>
-
-                        </ListViewItem>
+                            
+                        </ListViewItem >
                     </ListView>
                 </DockPanel>
             </TabItem>

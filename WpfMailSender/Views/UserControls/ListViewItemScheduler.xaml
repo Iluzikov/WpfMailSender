@@ -21,7 +21,7 @@
             </Button.Content>
         </Button>
         
-        <xctk:DateTimePicker Name="dtpDateTime" DockPanel.Dock="Right"/>
+        <xctk:DateTimePicker Name="dtpDateTime" DockPanel.Dock="Right" ValueChanged="dtpDateTime_ValueChanged"/>
         
     </DockPanel>
 </UserControl>

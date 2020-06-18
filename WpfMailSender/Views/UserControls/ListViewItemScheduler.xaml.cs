@@ -30,8 +30,13 @@ namespace WpfMailSender.Views.UserControls
             {
                 MailSet.EmailSubject = textWindow.tbSubject.Text;
                 MailSet.EmailText = textWindow.tbText.Text;
-                MailSet.EmailDateTime = dtpDateTime.Value ?? DateTime.Now;
+                
             }
+        }
+
+        private void dtpDateTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            MailSet.EmailDateTime = dtpDateTime.Value ?? DateTime.Now;
         }
     }
 }
