@@ -179,9 +179,6 @@
                     <ListView x:Name="lvShedulerListItem"
                               Style="{StaticResource listViewStyle}"
                               DockPanel.Dock="Bottom" Margin="0,5,0,0">
-                        <ListViewItem>
-                            
-                        </ListViewItem >
                     </ListView>
                 </DockPanel>
             </TabItem>

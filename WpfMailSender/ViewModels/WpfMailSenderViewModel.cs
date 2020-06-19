@@ -160,7 +160,7 @@ namespace WpfMailSender.ViewModels
             if (authWindow.ShowDialog() == true)
             {
                 _sendService = new EmailSendServiceClass(SelectedSmtp, authWindow.authSettings, mailSettings);
-                _sendService.SendMails(EmailInfoVM.RecipientList);
+                _scheduler.SendEmails(dtSendDateTime, _sendService, EmailInfoVM.RecipientList);
             }
         }
         
