@@ -1,9 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using WpfMailSender.Commands;
 using WpfMailSender.Data;
+using WpfMailSender.EFData;
 using WpfMailSender.Services;
 using WpfMailSender.ViewModels.Base;
 
@@ -13,7 +16,8 @@ namespace WpfMailSender.ViewModels
     {
         public WpfMailSenderViewModel MainVM { get; internal set; }
 
-        private readonly IDataAccessService _dataAccessService;
+        //private readonly IDataAccessService _dataAccessService;
+        private EmailEDMContainer _emailContainer;
 
         #region Поиск адресата
 
@@ -36,6 +40,7 @@ namespace WpfMailSender.ViewModels
             get => _emailsFilterTextFlag;
             set => Set(ref _emailsFilterTextFlag, value);
         }
+
         /// <summary>
         /// Метод фильтрации
         /// </summary>
@@ -43,7 +48,7 @@ namespace WpfMailSender.ViewModels
         /// <param name="e"></param>
         private void OnEmailFiltered(object sender, FilterEventArgs e)
         {
-            if (!(e.Item is Emails emails))
+            if (!(e.Item is EFEmail emails))
             {
                 e.Accepted = false;
                 return;
@@ -54,15 +59,15 @@ namespace WpfMailSender.ViewModels
                 return;
 
             if (emails.Name.ToLower().Contains(filterText.ToLower())) return;
-            if (emails.Email.ToLower().Contains(filterText.ToLower())) return;
+            if (emails.Address.ToLower().Contains(filterText.ToLower())) return;
 
             e.Accepted = false;
         }
         #endregion
 
         #region Список всех адресатов из БД
-        private ObservableCollection<Emails> _emailsList;
-        public ObservableCollection<Emails> EmailsList
+        private ObservableCollection<EFEmail> _emailsList;
+        public ObservableCollection<EFEmail> EmailsList
         {
             get => _emailsList;
             set
@@ -75,12 +80,12 @@ namespace WpfMailSender.ViewModels
         #endregion
 
         #region Список получателей сообщения
-        public ObservableCollection<Emails> RecipientList { get; set; }
+        public ObservableCollection<EFEmail> RecipientList { get; set; }
         #endregion
 
         #region Выбранный Email адрес
-        private Emails _selectedEmail;
-        public Emails SelectedEmail
+        private EFEmail _selectedEmail;
+        public EFEmail SelectedEmail
         {
             get => _selectedEmail;
             set => Set(ref _selectedEmail, value);
@@ -88,8 +93,8 @@ namespace WpfMailSender.ViewModels
         #endregion
 
         #region Выбранный получатель
-        private Emails _selectedRecipient;
-        public Emails SelectedRecipient
+        private EFEmail _selectedRecipient;
+        public EFEmail SelectedRecipient
         {
             get => _selectedRecipient;
             set => Set(ref _selectedRecipient, value);
@@ -98,9 +103,12 @@ namespace WpfMailSender.ViewModels
 
         public EmailInfoViewModel(IDataAccessService dataService)
         {
-            _dataAccessService = dataService;
-            RecipientList = new ObservableCollection<Emails>();
+            //_dataAccessService = dataService;
+            _emailContainer = new EmailEDMContainer();
+            //EmailsList = GetEmails();
+            RecipientList = new ObservableCollection<EFEmail>();
             _emailsListCollections.Filter += OnEmailFiltered;
+
 
             #region Комманды
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
@@ -114,10 +122,16 @@ namespace WpfMailSender.ViewModels
         /// <summary>
         /// Получает список E-mail адресов через класс-сервис
         /// </summary>
-        void GetEmails()
+        ObservableCollection<EFEmail> GetEmails()
         {
-            EmailsList = _dataAccessService.GetEmails();
+            ObservableCollection<EFEmail> emails = new ObservableCollection<EFEmail>();
+            foreach (var item in _emailContainer.EFEmailSet)
+            {
+                emails.Add(item);
+            }
+            //EmailsList = _EmailContainer.EFEmailSet.ToList();
             EmailsFilterTextFlag = true;
+            return emails;
         }
 
         #region Команда получения списка Email
@@ -125,7 +139,7 @@ namespace WpfMailSender.ViewModels
         public ICommand GetEmailsCommand { get; }
         private void OnGetEmailsCommandExecuted(object p)
         {
-            GetEmails();
+            EmailsList = GetEmails();
         }
         private bool CanGetEmailsCommandExecute(object p)
         {

@@ -228,23 +228,23 @@
     <Compile Include="Data\DataBase.cs">
       <DependentUpon>DataBase.dbml</DependentUpon>
     </Compile>
-    <Compile Include="EFData\DBEmails.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEmails.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EFData\DBEmails.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEmails.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EFData\DBEmails.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBEmails.edmx</DependentUpon>
-    </Compile>
     <Compile Include="EFData\EFEmail.cs">
-      <DependentUpon>DBEmails.tt</DependentUpon>
+      <DependentUpon>EmailEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFData\EmailEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFData\EmailEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFData\EmailEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmailEDM.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Pass.cs" />
     <Compile Include="Program.cs" />
@@ -360,12 +360,12 @@
     <None Include="Data\DataBase.dbml.layout">
       <DependentUpon>DataBase.dbml</DependentUpon>
     </None>
-    <EntityDeploy Include="EFData\DBEmails.edmx">
+    <EntityDeploy Include="EFData\EmailEDM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBEmails.Designer.cs</LastGenOutput>
+      <LastGenOutput>EmailEDM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EFData\DBEmails.edmx.diagram">
-      <DependentUpon>DBEmails.edmx</DependentUpon>
+    <None Include="EFData\EmailEDM.edmx.diagram">
+      <DependentUpon>EmailEDM.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -418,13 +418,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataBase\EFMailSender.ldf">
-      <DependentUpon>EFMailSender.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="DataBase\EFMailSenderDB.ldf">
+      <DependentUpon>EFMailSenderDB.mdf</DependentUpon>
     </Content>
-    <Content Include="DataBase\EFMailSender.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="DataBase\EFMailSenderDB.mdf" />
     <Content Include="DataBase\MailSenderDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -432,16 +429,16 @@
       <DependentUpon>MailSenderDB.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="EFData\DBEmails.Context.tt">
+    <Content Include="EFData\EmailEDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBEmails.Context.cs</LastGenOutput>
-      <DependentUpon>DBEmails.edmx</DependentUpon>
+      <LastGenOutput>EmailEDM.Context.cs</LastGenOutput>
+      <DependentUpon>EmailEDM.edmx</DependentUpon>
     </Content>
-    <Content Include="EFData\DBEmails.edmx.sql" />
-    <Content Include="EFData\DBEmails.tt">
+    <Content Include="EFData\EmailEDM.edmx.sql" />
+    <Content Include="EFData\EmailEDM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DBEmails.cs</LastGenOutput>
-      <DependentUpon>DBEmails.edmx</DependentUpon>
+      <LastGenOutput>EmailEDM.cs</LastGenOutput>
+      <DependentUpon>EmailEDM.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

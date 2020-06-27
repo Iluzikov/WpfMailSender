@@ -1,11 +1,13 @@
 ﻿using CodePasswordDLL;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows;
 using WpfMailSender.Data;
+using WpfMailSender.EFData;
 using WpfMailSender.Models;
 
 namespace WpfMailSender.Services
@@ -46,11 +48,11 @@ namespace WpfMailSender.Services
             }
         }
 
-        public void SendMails(ObservableCollection<Emails> emails)
+        public void SendMails(ObservableCollection<EFEmail> emails)
         {
-            foreach (Emails email in emails)
+            foreach (EFEmail email in emails)
             {
-                SendMail(email.Email);
+                SendMail(email.Address);
             }
             MessageBox.Show("Сообщение отправлено");
         }

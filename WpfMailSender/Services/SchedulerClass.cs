@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using WpfMailSender.Data;
+using WpfMailSender.EFData;
 
 namespace WpfMailSender.Services
 {
@@ -17,7 +17,7 @@ namespace WpfMailSender.Services
         DispatcherTimer _timer = new DispatcherTimer();
         EmailSendServiceClass _emailSenderService;
         DateTime _dtSend;
-        ObservableCollection<Emails> _emails;
+        ObservableCollection<EFEmail> _emails;
 
         Dictionary<DateTime, string> _dicDates = new Dictionary<DateTime, string>();
         public Dictionary<DateTime, string> DatesEmailTexts
@@ -53,7 +53,7 @@ namespace WpfMailSender.Services
         /// <param name="dtSend"></param>
         /// <param name="emailSender"></param>
         /// <param name="emails"></param>
-        public void SendEmails(DateTime dtSend, EmailSendServiceClass emailSender, ObservableCollection<Emails> emails)
+        public void SendEmails(DateTime dtSend, EmailSendServiceClass emailSender, ObservableCollection<EFEmail> emails)
         {
             _emailSenderService = emailSender;
             _dtSend = dtSend;
@@ -66,12 +66,12 @@ namespace WpfMailSender.Services
         private void Timer_Tick(object sender, EventArgs e)
         {
             // метод изменен по методичке урок 4
-            if(_dicDates.Count == 0)
+            if (_dicDates.Count == 0)
             {
                 _timer.Stop();
                 MessageBox.Show("Письма отправлены");
             }
-            else if( _dicDates.Keys.First<DateTime>().ToShortTimeString() == DateTime.Now.ToShortTimeString())
+            else if (_dicDates.Keys.First<DateTime>().ToShortTimeString() == DateTime.Now.ToShortTimeString())
             {
                 _emailSenderService.SendMails(_emails);
                 _dicDates.Remove(_dicDates.Keys.First<DateTime>());
