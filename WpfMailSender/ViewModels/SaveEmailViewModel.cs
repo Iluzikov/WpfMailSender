@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using WpfMailSender.Commands;
 using WpfMailSender.Data;
+using WpfMailSender.EFData;
 using WpfMailSender.Services;
 using WpfMailSender.ViewModels.Base;
 
@@ -24,32 +25,23 @@ namespace WpfMailSender.ViewModels
         //}
 
         ViewModelLocator locator = new ViewModelLocator();
-
-        Emails _emailInfo;
-        public Emails EmailInfo
+        EFEmail _emailInfo;
+        public EFEmail EmailInfo
         {
             get => _emailInfo;
             set => Set(ref _emailInfo, value);
         }
 
-        private readonly IDataAccessService _dataAccessService;
 
         public SaveEmailViewModel(IDataAccessService dataAccessService)
         {
-            _dataAccessService = dataAccessService;
-            EmailInfo = new Emails();
+            EmailInfo = new EFEmail();
             SaveEmailCommand = new RelayCommand(OnSaveEmailCommandExecuted, CanSaveEmailCommandExecut);
         }
 
         void SaveEmail()
         {
-            int SaveResult = _dataAccessService.CreateEmail(EmailInfo);
-
-            if (SaveResult != 0)
-            {
-                MessageBox.Show($"Email добавлен");
-            }
-            else MessageBox.Show($"Ошибка добавления Email");
+            locator.EmailInfoModel.AddEmailAddress(EmailInfo);
         }
 
         #region Добавить Email

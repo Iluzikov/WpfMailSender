@@ -105,10 +105,8 @@ namespace WpfMailSender.ViewModels
         {
             //_dataAccessService = dataService;
             _emailContainer = new EmailEDMContainer();
-            //EmailsList = GetEmails();
             RecipientList = new ObservableCollection<EFEmail>();
             _emailsListCollections.Filter += OnEmailFiltered;
-
 
             #region Комманды
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
@@ -122,16 +120,17 @@ namespace WpfMailSender.ViewModels
         /// <summary>
         /// Получает список E-mail адресов через класс-сервис
         /// </summary>
-        ObservableCollection<EFEmail> GetEmails()
+        internal void GetEmails()
         {
-            ObservableCollection<EFEmail> emails = new ObservableCollection<EFEmail>();
-            foreach (var item in _emailContainer.EFEmailSet)
-            {
-                emails.Add(item);
-            }
-            //EmailsList = _EmailContainer.EFEmailSet.ToList();
+            EmailsList = new ObservableCollection<EFEmail>(_emailContainer.EFEmailSet);
             EmailsFilterTextFlag = true;
-            return emails;
+        }
+
+        internal void AddEmailAddress(EFEmail email)
+        {
+            _emailContainer.EFEmailSet.Add(email);
+            _emailContainer.SaveChanges();
+
         }
 
         #region Команда получения списка Email
@@ -139,7 +138,7 @@ namespace WpfMailSender.ViewModels
         public ICommand GetEmailsCommand { get; }
         private void OnGetEmailsCommandExecuted(object p)
         {
-            EmailsList = GetEmails();
+            GetEmails();
         }
         private bool CanGetEmailsCommandExecute(object p)
         {

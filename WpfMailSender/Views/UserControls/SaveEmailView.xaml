@@ -35,7 +35,7 @@
                      Validation.Error="tbEmail_Error"
                      Width="130">
                 <TextBox.Text>
-                    <Binding Path="EmailInfo.Email"
+                    <Binding Path="EmailInfo.Address"
                              NotifyOnValidationError="True"
                              ValidatesOnDataErrors="True"
                              UpdateSourceTrigger="PropertyChanged">
