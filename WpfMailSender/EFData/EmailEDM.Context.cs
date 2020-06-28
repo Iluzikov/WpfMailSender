@@ -26,5 +26,6 @@ namespace WpfMailSender.EFData
         }
     
         public virtual DbSet<EFEmail> EFEmailSet { get; set; }
+        public virtual DbSet<EFSmtp> EFSmtpSet { get; set; }
     }
 }

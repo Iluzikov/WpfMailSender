@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/27/2020 11:20:24
+-- Date Created: 06/27/2020 14:38:55
 -- Generated from EDMX file: D:\GEEKBrains\HomeWorks\Cs_3\WpfMailSender\WpfMailSender\EFData\EmailEDM.edmx
 -- --------------------------------------------------
 
@@ -22,6 +22,12 @@ GO
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[EFEmailSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EFEmailSet];
+GO
+IF OBJECT_ID(N'[dbo].[EFSmtpSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EFSmtpSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -35,6 +41,15 @@ CREATE TABLE [dbo].[EFEmailSet] (
 );
 GO
 
+-- Creating table 'EFSmtpSet'
+CREATE TABLE [dbo].[EFSmtpSet] (
+    [SmtpId] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Server] nvarchar(max)  NOT NULL,
+    [Port] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -43,6 +58,12 @@ GO
 ALTER TABLE [dbo].[EFEmailSet]
 ADD CONSTRAINT [PK_EFEmailSet]
     PRIMARY KEY CLUSTERED ([EmailId] ASC);
+GO
+
+-- Creating primary key on [SmtpId] in table 'EFSmtpSet'
+ALTER TABLE [dbo].[EFSmtpSet]
+ADD CONSTRAINT [PK_EFSmtpSet]
+    PRIMARY KEY CLUSTERED ([SmtpId] ASC);
 GO
 
 -- --------------------------------------------------

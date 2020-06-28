@@ -225,10 +225,10 @@
     </ApplicationDefinition>
     <Compile Include="Commands\Base\CommandBase.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Data\DataBase.cs">
-      <DependentUpon>DataBase.dbml</DependentUpon>
-    </Compile>
     <Compile Include="EFData\EFEmail.cs">
+      <DependentUpon>EmailEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFData\EFSmtp.cs">
       <DependentUpon>EmailEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="EFData\EmailEDM.Context.cs">
@@ -248,7 +248,6 @@
     </Compile>
     <Compile Include="Models\Pass.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Services\DataAccessService.cs" />
     <Compile Include="ValidationRules\EmailAddressRule.cs" />
     <Compile Include="ViewModels\EmailInfoViewModel.cs" />
     <Compile Include="ViewModels\MyTabSwitcherViewModel.cs" />
@@ -258,12 +257,6 @@
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AuthorizationWindowViewModel.cs" />
-    <Compile Include="Data\DataBaseClass.cs" />
-    <Compile Include="Data\DataBase.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBase.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Services\SchedulerClass.cs" />
     <Compile Include="Views\MessageTextWindow.xaml.cs">
       <DependentUpon>MessageTextWindow.xaml</DependentUpon>
@@ -352,14 +345,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\DataBase.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataBase.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Data\DataBase.dbml.layout">
-      <DependentUpon>DataBase.dbml</DependentUpon>
-    </None>
     <EntityDeploy Include="EFData\EmailEDM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EmailEDM.Designer.cs</LastGenOutput>
@@ -420,13 +405,9 @@
   <ItemGroup>
     <Content Include="DataBase\EFMailSenderDB.ldf">
       <DependentUpon>EFMailSenderDB.mdf</DependentUpon>
-    </Content>
-    <Content Include="DataBase\EFMailSenderDB.mdf" />
-    <Content Include="DataBase\MailSenderDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DataBase\MailSenderDB_log.ldf">
-      <DependentUpon>MailSenderDB.mdf</DependentUpon>
+    <Content Include="DataBase\EFMailSenderDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="EFData\EmailEDM.Context.tt">

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Windows;
-using WpfMailSender.Data;
+﻿using System.Windows;
 using WpfMailSender.ViewModels;
 using WpfMailSender.Views.UserControls;
 
@@ -33,14 +30,14 @@ namespace WpfMailSender.Views
         {
             //var selectedDate = cldSchedulDate.SelectedDate ?? DateTime.Today;
             //model.SendMessageLater((IQueryable<Emails>)dgEmails.ItemsSource, (Smtp)cbSmtp.SelectedItem, selectedDate, tPicker.Text);
-            if(lvShedulerListItem.Items.Count > 0)
+            if (lvShedulerListItem.Items.Count > 0)
             {
                 foreach (var item in lvShedulerListItem.Items)
                 {
                     if (item is ListViewItemScheduler mess)
                         Locator.WpfMailSenderModel.SendMessageLater(mess.MailSet);
                 }
-            }    
+            }
             else MessageBox.Show("List is null");
         }
 

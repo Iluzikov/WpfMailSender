@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using WpfMailSender.Commands;
-using WpfMailSender.Data;
 using WpfMailSender.EFData;
-using WpfMailSender.Services;
 using WpfMailSender.ViewModels.Base;
 
 namespace WpfMailSender.ViewModels
@@ -101,9 +97,8 @@ namespace WpfMailSender.ViewModels
         }
         #endregion
 
-        public EmailInfoViewModel(IDataAccessService dataService)
+        public EmailInfoViewModel()
         {
-            //_dataAccessService = dataService;
             _emailContainer = new EmailEDMContainer();
             RecipientList = new ObservableCollection<EFEmail>();
             _emailsListCollections.Filter += OnEmailFiltered;

@@ -1,12 +1,9 @@
 ﻿using CodePasswordDLL;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows;
-using WpfMailSender.Data;
 using WpfMailSender.EFData;
 using WpfMailSender.Models;
 
@@ -14,11 +11,11 @@ namespace WpfMailSender.Services
 {
     public class EmailSendServiceClass
     {
-        private Smtp _smtp;
+        private EFSmtp _smtp;
         private AuthSettings _auth;
         private MailSettings _mail;
 
-        public EmailSendServiceClass(Smtp smtp, AuthSettings auth, MailSettings mail)
+        public EmailSendServiceClass(EFSmtp smtp, AuthSettings auth, MailSettings mail)
         {
             _smtp = smtp;
             _auth = auth;

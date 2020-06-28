@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d976e463db384424add01b9143d29fa2" Name="Diagram1" >
         <EntityTypeShape EntityType="EmailEDM.EFEmail" Width="1.5" PointX="4.375" PointY="2.375" />
+        <EntityTypeShape EntityType="EmailEDM.EFSmtp" Width="1.5" PointX="6.375" PointY="2.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
