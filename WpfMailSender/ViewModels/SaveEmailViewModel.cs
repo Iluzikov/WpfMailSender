@@ -27,6 +27,7 @@ namespace WpfMailSender.ViewModels
         void SaveEmail()
         {
             locator.EmailInfoModel.AddEmailAddress(EmailInfo);
+            EmailInfo = null;
         }
 
         #region Комманда добавить Email

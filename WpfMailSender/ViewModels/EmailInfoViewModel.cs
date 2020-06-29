@@ -11,8 +11,6 @@ namespace WpfMailSender.ViewModels
     internal class EmailInfoViewModel : ViewModelBase
     {
         public WpfMailSenderViewModel MainVM { get; internal set; }
-
-        //private readonly IDataAccessService _dataAccessService;
         private EmailEDMContainer _emailContainer;
 
         #region Поиск адресата
@@ -102,6 +100,8 @@ namespace WpfMailSender.ViewModels
             _emailContainer = new EmailEDMContainer();
             RecipientList = new ObservableCollection<EFEmail>();
             _emailsListCollections.Filter += OnEmailFiltered;
+            EmailsList = new ObservableCollection<EFEmail>(_emailContainer.EFEmailSet);
+            EmailsFilterTextFlag = true;
 
             #region Комманды
             GetEmailsCommand = new RelayCommand(OnGetEmailsCommandExecuted, CanGetEmailsCommandExecute);
@@ -125,7 +125,8 @@ namespace WpfMailSender.ViewModels
         {
             _emailContainer.EFEmailSet.Add(email);
             _emailContainer.SaveChanges();
-
+            EmailsList.Add(email); // проблема в методе поиска адресатов!
+            //GetEmails();
         }
 
         #region Команда получения списка Email
@@ -133,7 +134,7 @@ namespace WpfMailSender.ViewModels
         public ICommand GetEmailsCommand { get; }
         private void OnGetEmailsCommandExecuted(object p)
         {
-            GetEmails();
+            //GetEmails();
         }
         private bool CanGetEmailsCommandExecute(object p)
         {

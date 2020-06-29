@@ -405,10 +405,10 @@
   <ItemGroup>
     <Content Include="DataBase\EFMailSenderDB.ldf">
       <DependentUpon>EFMailSenderDB.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="DataBase\EFMailSenderDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="EFData\EmailEDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

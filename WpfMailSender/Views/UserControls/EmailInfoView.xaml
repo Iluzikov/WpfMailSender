@@ -69,13 +69,13 @@
                     Command="{Binding GetEmailsCommand}"/>
 
                 <DataGrid AutoGenerateColumns="False" IsReadOnly="True"
-                          ItemsSource="{Binding EmailsListCollection}"
+                          ItemsSource="{Binding EmailsListCollection, UpdateSourceTrigger=PropertyChanged}"
                           SelectedItem="{Binding SelectedEmail}"
                           AlternatingRowBackground="AliceBlue">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="#" Width="6*" Binding="{Binding EmailId}"/>
-                        <DataGridTextColumn Header="Имя" Width="80*" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Email адрес" Width="100*" Binding="{Binding Address}"/>
+                        <DataGridTextColumn Header="#" Width="6*" Binding="{Binding EmailId, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Имя" Width="80*" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <DataGridTextColumn Header="Email адрес" Width="100*" Binding="{Binding Address, UpdateSourceTrigger=PropertyChanged}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
